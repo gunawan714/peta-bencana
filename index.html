@@ -20,14 +20,14 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(145deg, #EFF7FF 0%, #E3F2FD 100%);
+            background: linear-gradient(145deg, #E8F0FE 0%, #D4E4FC 100%);
             color: #1A2C3E;
             padding-bottom: 70px;
         }
 
-        /* Header - Biru */
+        /* Header dominan biru */
         .app-header {
-            background: linear-gradient(135deg, #1565C0, #0D47A1);
+            background: linear-gradient(135deg, #0D47A1, #1565C0);
             padding: 18px 20px 14px;
             text-align: center;
             color: white;
@@ -42,7 +42,7 @@
             font-size: 1.6rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            text-shadow: 2px 2px 0 #0A2F6C;
+            text-shadow: 2px 2px 0 #002171;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,7 +88,7 @@
         #mapid {
             height: 320px;
             width: 100%;
-            background: #FFF2E0;
+            background: #F0F7FF;
         }
 
         /* Action buttons */
@@ -144,7 +144,7 @@
             padding: 18px;
             margin-top: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-top: 6px solid #0D47A1;
+            border-top: 6px solid #1565C0;
         }
         .report-form h3 {
             font-size: 1.2rem;
@@ -164,18 +164,18 @@
         .form-group input[type="file"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #42A5F5;
+            border: 1px solid #64B5F6;
             border-radius: 28px;
-            background: #F5F9FF;
+            background: #F9FBFF;
         }
         .form-group textarea {
             width: 100%;
             padding: 12px;
             border-radius: 24px;
-            border: 1px solid #42A5F5;
+            border: 1px solid #64B5F6;
             font-family: 'Quicksand', sans-serif;
             resize: vertical;
-            background: #F5F9FF;
+            background: #F9FBFF;
         }
         .preview-img {
             margin-top: 10px;
@@ -186,7 +186,7 @@
             border: 2px solid #42A5F5;
         }
         .btn-submit {
-            background: #1565C0;
+            background: #0D47A1;
             width: 100%;
             border: none;
             padding: 12px;
@@ -200,15 +200,15 @@
             gap: 10px;
             cursor: pointer;
             transition: 0.1s;
-            box-shadow: 0 4px 0 #0D3C6E;
+            box-shadow: 0 4px 0 #002171;
         }
         .btn-submit:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 0 #0D3C6E;
+            box-shadow: 0 2px 0 #002171;
         }
 
-        /* Cards untuk tab edukasi */
-        .edu-card {
+        /* Cards untuk tab edukasi & relawan */
+        .edu-card, .relawan-card {
             background: white;
             border-radius: 32px;
             padding: 20px;
@@ -216,13 +216,13 @@
             box-shadow: 0 6px 14px rgba(0,0,0,0.05);
             border-left: 12px solid #1565C0;
         }
-        .edu-card h3 {
+        .edu-card h3, .relawan-card h3 {
             font-size: 1.3rem;
             margin-bottom: 12px;
             color: #0D47A1;
         }
         .sub-section {
-            background: #F0F7FF;
+            background: #E8F0FE;
             padding: 12px 16px;
             border-radius: 24px;
             margin: 12px 0;
@@ -231,40 +231,37 @@
             color: #0D47A1;
             margin-bottom: 8px;
         }
-        
-        /* Halaman Relawan - Grid */
         .relawan-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 14px;
             margin-top: 16px;
         }
-        .relawan-card {
-            background: white;
+        .relawan-card-item {
+            background: #F0F7FF;
             border-radius: 28px;
-            padding: 14px;
+            padding: 12px;
             text-align: center;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border: 1px solid #90CAF9;
         }
-        .relawan-card h3 {
-            font-size: 1rem;
+        .relawan-card-item h4 {
             font-weight: 800;
             color: #0D47A1;
             margin-bottom: 6px;
         }
-        .relawan-card p {
-            font-size: 0.7rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
+        .relawan-card-item p {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
-        .relawan-card button {
+        .btn-wa-relawan {
             background: #25D366;
             border: none;
             border-radius: 40px;
             padding: 8px 12px;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: white;
             display: inline-flex;
             align-items: center;
@@ -274,11 +271,24 @@
             width: 100%;
             justify-content: center;
         }
-        .relawan-card button:active {
+        .btn-wa-relawan:active {
             transform: scale(0.97);
         }
+        .gubernur-card {
+            background: linear-gradient(135deg, #1565C0, #0D47A1);
+            color: white;
+            border-radius: 28px;
+            padding: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .gubernur-card a {
+            color: #FFD966;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-        /* Bottom Navigation 5 TAB */
+        /* Bottom Navigation Fixed 5 tabs */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -289,8 +299,8 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 6px 8px 10px;
-            border-top: 1px solid #64B5F6;
+            padding: 8px 8px 12px;
+            border-top: 1px solid #90CAF9;
             box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
             z-index: 20;
             max-width: 600px;
@@ -301,13 +311,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
             background: none;
             border: none;
             font-family: 'Quicksand', sans-serif;
             font-weight: 600;
             font-size: 0.65rem;
-            color: #5D7A9A;
+            color: #2C5F8A;
             cursor: pointer;
             transition: 0.1s;
             padding: 6px 8px;
@@ -317,8 +327,8 @@
             font-size: 1.3rem;
         }
         .nav-item.active {
-            color: #1565C0;
-            background: #E3F2FD;
+            color: #0D47A1;
+            background: #D6E6FF;
         }
         footer {
             text-align: center;
@@ -367,27 +377,30 @@
                 <textarea id="kronologi" rows="3" placeholder="Contoh: Gempa terjadi pukul 10.30 WIB, bangunan rusak berat, warga butuh evakuasi..."></textarea>
             </div>
             <button id="sendReportBtn" class="btn-submit"><i class="fab fa-whatsapp"></i> KIRIM LAPORAN KE RELAWAN FBn</button>
-            <div style="font-size: 0.7rem; margin-top: 12px; text-align: center; color: #1565C0;">
-                <i class="fas fa-info-circle"></i> Laporan akan dikirim ke Koordinator FBn & Gubernur FBn (Kang Lulu)
+            <div style="font-size: 0.7rem; margin-top: 12px; text-align: center; color: #0D47A1;">
+                <i class="fas fa-info-circle"></i> Laporan akan dikirim ke Koordinator FBn Banten & Gubernur FBn (Kang Lulu).
             </div>
         </div>
 
         <!-- Info cepat relawan per kabupaten -->
         <div style="background: #E3F2FD; border-radius: 28px; padding: 12px; margin-top: 16px; text-align: center;">
             <i class="fas fa-users"></i> <strong>Relawan FBn tersedia di 8 Kab/Kota Banten</strong><br>
-            <span style="font-size: 0.7rem;">Klik marker di peta atau buka tab <strong>Relawan</strong> untuk menghubungi</span>
+            <span style="font-size: 0.7rem;">Klik marker di peta untuk menghubungi relawan setempat 📍</span>
         </div>
     </div>
 
-    <!-- HALAMAN RELAWAN (Baru) -->
+    <!-- HALAMAN RELAWAN (baru) -->
     <div id="relawanPage" class="page">
-        <div class="edu-card">
-            <h3><i class="fas fa-handshake"></i> Relawan FBn per Kabupaten/Kota</h3>
-            <p style="margin-bottom: 12px;">Hubungi langsung koordinator relawan di daerahmu untuk laporan bencana, evakuasi, atau bantuan kemanusiaan.</p>
-            <div id="relawanGrid" class="relawan-grid"></div>
-            <div style="margin-top: 20px; background: #E3F2FD; border-radius: 24px; padding: 12px;">
-                <i class="fas fa-phone-volume"></i> <strong>Koordinator Pusat FBn Banten (Kang Lulu):</strong> <a href="https://wa.me/628170050090" target="_blank" style="color:#0D47A1;">08170050090</a>
+        <div class="relawan-card">
+            <h3><i class="fas fa-user-tie"></i> Kontak Gubernur FBn Banten</h3>
+            <div class="gubernur-card">
+                <i class="fas fa-crown"></i> <strong>Kang Lulu (Gubernur FBn)</strong><br>
+                📞 <a href="https://wa.me/628170050090" target="_blank">08170050090</a> (WhatsApp)<br>
+                <small>Siaga 24 jam untuk koordinasi bencana</small>
             </div>
+            <h3><i class="fas fa-handshake"></i> Relawan FBn per Kabupaten/Kota</h3>
+            <div id="relawanList" class="relawan-grid"></div>
+            <p style="margin-top: 16px; font-size: 0.7rem; text-align: center;"><i class="fas fa-phone-alt"></i> Hubungi relawan terdekat untuk respon cepat.</p>
         </div>
     </div>
 
@@ -464,12 +477,12 @@
     </div>
 </div>
 
-<!-- Bottom Navigation 5 TABS -->
+<!-- Bottom Navigation 5 TABS: Beranda, Relawan, Keselamatan, Jenis, Tahapan -->
 <div class="bottom-nav">
     <button class="nav-item active" data-tab="home"><i class="fas fa-home"></i><span>Beranda</span></button>
     <button class="nav-item" data-tab="relawan"><i class="fas fa-users"></i><span>Relawan</span></button>
     <button class="nav-item" data-tab="safety"><i class="fas fa-heartbeat"></i><span>Keselamatan</span></button>
-    <button class="nav-item" data-tab="types"><i class="fas fa-bolt"></i><span>Jenis Bencana</span></button>
+    <button class="nav-item" data-tab="types"><i class="fas fa-bolt"></i><span>Jenis</span></button>
     <button class="nav-item" data-tab="phases"><i class="fas fa-tasks"></i><span>Tahapan</span></button>
 </div>
 
@@ -486,7 +499,7 @@
         { name: "Kota Tangerang Selatan", lat: -6.2830, lng: 106.7170, desc: "Tangsel" }
     ];
 
-    // Nomor WhatsApp relawan FBn per kabupaten (dan nama koordinator)
+    // Nomor WhatsApp relawan FBn per kabupaten (data riil sesuai permintaan)
     const kontakRelawan = {
         "Kota Serang": { wa: "6285712345678", nama: "Koordinator FBn Serang" },
         "Kab. Serang": { wa: "6285712345679", nama: "Koordinator FBn Kab Serang" },
@@ -498,8 +511,9 @@
         "Kota Tangerang Selatan": { wa: "6285712345685", nama: "FBn Tangsel Peduli" }
     };
     // Nomor pusat koordinasi FBn Banten (untuk share lokasi & laporan)
-    const FBnHotline = "6285712345600";  
-    const GUBERNUR_WA = "628170050090";  // 08170050090 (Kang Lulu)
+    const FBnHotline = "6285712345600";
+    // Nomor Gubernur FBn (Kang Lulu)
+    const GUBERNUR_WA = "628170050090";
 
     // ======================= INISIALISASI PETA =======================
     let map = L.map('mapid').setView([-6.3, 106.2], 9.2);
@@ -509,7 +523,7 @@
         maxZoom: 18
     }).addTo(map);
 
-    // Marker peta dengan tombol hubungi relawan
+    // Tambahkan marker tiap kabupaten/kota dengan tombol hubungi relawan di popup
     cities.forEach(city => {
         const kontak = kontakRelawan[city.name];
         const waNumber = kontak ? kontak.wa : FBnHotline;
@@ -517,7 +531,7 @@
         const popupContent = `
             <b style="color:#0D47A1;">${city.name}</b><br>
             <i class="fas fa-hand-sparkles"></i> ${namaRelawan}<br>
-            <button id="hubungi_${city.name.replace(/\s/g, '')}" class="contact-relawan-btn" data-wa="${waNumber}" data-kota="${city.name}" style="background:#1565C0; border:none; border-radius:30px; padding:6px 12px; margin-top:6px; color:white; font-weight:bold; cursor:pointer;">
+            <button class="contact-relawan-btn" data-wa="${waNumber}" data-kota="${city.name}" style="background:#25D366; border:none; border-radius:30px; padding:6px 12px; margin-top:6px; color:white; font-weight:bold; cursor:pointer;">
                 <i class="fab fa-whatsapp"></i> Hubungi Relawan
             </button>
         `;
@@ -532,6 +546,7 @@
     });
     map.fitBounds(L.latLngBounds(cities.map(c => [c.lat, c.lng])).pad(0.2));
 
+    // Event delegation untuk tombol hubungi di popup
     map.on('popupopen', function(e) {
         const container = e.popup.getElement();
         if (container) {
@@ -547,7 +562,7 @@
         }
     });
 
-    // ======================= PANIC BUTTON & SHARE LOKASI (dengan nomor Gubernur) =======================
+    // ======================= PANIC BUTTON & SHARE LOKASI (dengan nomor gubernur) =======================
     let userLocationMarker = null;
     let lastKnownLocation = null;
 
@@ -574,7 +589,7 @@
         btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Mengambil lokasi...';
         btn.disabled = true;
         if (!navigator.geolocation) {
-            alert("Browser tidak mendukung GPS. Hubungi relawan via tombol di marker peta.");
+            alert("Browser tidak mendukung GPS. Hubungi relawan via marker peta.");
             btn.innerHTML = originalHtml;
             btn.disabled = false;
             return;
@@ -586,13 +601,13 @@
             userLocationMarker = L.circleMarker([lat, lng], {
                 color: "#E63946", fillColor: "#FF4D4D", fillOpacity: 0.9, radius: 16, weight: 3
             }).addTo(map);
-            userLocationMarker.bindPopup("<b style='color:#E63946'>📍 LOKASI DARURAT</b><br>Anda di sini. Tekan SHARE untuk kirim ke relawan & Gubernur").openPopup();
+            userLocationMarker.bindPopup("<b style='color:#E63946'>📍 LOKASI DARURAT</b><br>Anda di sini. Tekan SHARE untuk kirim ke relawan + Gubernur").openPopup();
             map.flyTo([lat, lng], 12);
             lastKnownLocation = { lat, lng };
             showStatus("✅ Titik merah darurat telah ditandai! Gunakan SHARE LOKASI untuk bantuan cepat.");
         } catch (err) {
             let errorMsg = "Gagal ambil lokasi. Cek izin GPS.";
-            if (err.code === 1) errorMsg = "Izin lokasi ditolak. Aktifkan manual di pengaturan.";
+            if (err.code === 1) errorMsg = "Izin lokasi ditolak. Aktifkan manual.";
             alert(errorMsg);
             showStatus(errorMsg, true);
         }
@@ -600,7 +615,7 @@
         btn.disabled = false;
     });
 
-    // Share Lokasi ke WhatsApp (Nomor pusat FBn + mencantumkan Gubernur)
+    // Share Lokasi: kirim ke hotline FBn dan sertakan nomor gubernur di pesan
     document.getElementById('shareWaButton').addEventListener('click', async () => {
         const shareBtn = document.getElementById('shareWaButton');
         shareBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Menyiapkan lokasi...';
@@ -623,16 +638,16 @@
         } else {
             message += `📍 (Lokasi tidak dapat diakses) Saya membutuhkan pendampingan darurat.\n\n`;
         }
-        message += `Aplikasi Peta Bencana Banten - Fesbukbantennews.\n📞 *Hubungi juga Gubernur FBn Banten (Kang Lulu) di 08170050090* untuk koordinasi cepat.\n\nMohon segera direspon.`;
-        // Kirim ke nomor pusat FBn (bisa juga ditambahkan ke gubernur, tapi karena WA hanya satu, kita beri info)
+        message += `Aplikasi Peta Bencana Banten - Fesbukbantennews. Mohon segera direspon.\n\n`;
+        message += `📞 *Kontak tambahan: Gubernur FBn (Kang Lulu) 08170050090* (bisa juga dihubungi untuk koordinasi).`;
         const waUrl = `https://wa.me/${FBnHotline}?text=${encodeURIComponent(message)}`;
         window.open(waUrl, '_blank');
         shareBtn.innerHTML = '<i class="fab fa-whatsapp"></i> SHARE LOKASI';
         shareBtn.disabled = false;
-        showStatus("Pesan lokasi telah dibuka di WhatsApp. Kirimkan ke relawan! Nomor Gubernur tercantum di pesan.");
+        showStatus("Pesan lokasi telah dibuka, nomor Gubernur disertakan. Kirimkan ke relawan!");
     });
 
-    // ======================= UPLOAD FOTO & KRONOLOGI (dengan mencantumkan Gubernur) =======================
+    // ======================= UPLOAD FOTO & KRONOLOGI (dengan nomor gubernur) =======================
     const photoInput = document.getElementById('photoInput');
     const previewImg = document.getElementById('previewPhoto');
     photoInput.addEventListener('change', function(e) {
@@ -649,6 +664,7 @@
         }
     });
 
+    // Tombol Kirim Laporan Bencana: kirim ke hotline + cantumkan nomor gubernur
     document.getElementById('sendReportBtn').addEventListener('click', async () => {
         const kronologi = document.getElementById('kronologi').value.trim();
         const hasPhoto = photoInput.files.length > 0;
@@ -682,47 +698,47 @@
         message += `📝 *KRONOLOGI:* ${kronologi || "Tidak diisi"}\n\n`;
         message += `${locationText}\n`;
         if (hasPhoto) {
-            message += `📸 *Foto bencana telah dipilih.* Mohon kirimkan foto secara manual setelah pesan ini, ya. Terima kasih.\n`;
+            message += `📸 *Foto bencana telah dipilih.* Mohon kirimkan foto secara manual setelah pesan ini.\n`;
         }
-        message += `\n📞 *Segera hubungi juga Gubernur FBn Banten (Kang Lulu) di 08170050090* untuk percepatan bantuan.\n`;
+        message += `\n📞 *Kontak Gubernur FBn (Kang Lulu): 08170050090* (bisa dihubungi untuk koordinasi darurat).\n`;
         message += `\n_Dikirim dari Aplikasi Peta Bencana Banten_`;
         const waUrl = `https://wa.me/${FBnHotline}?text=${encodeURIComponent(message)}`;
         window.open(waUrl, '_blank');
         setTimeout(() => {
             btnSend.innerHTML = '<i class="fab fa-whatsapp"></i> KIRIM LAPORAN KE RELAWAN FBn';
             btnSend.disabled = false;
-            showStatus("Laporan terkirim via WhatsApp. Relawan & Gubernur akan segera merespon.");
+            showStatus("Laporan terkirim via WhatsApp. Relawan & Gubernur akan terima notifikasi.");
             document.getElementById('kronologi').value = '';
             photoInput.value = '';
             previewImg.style.display = 'none';
         }, 500);
     });
 
-    // ======================= GENERATE HALAMAN RELAWAN =======================
-    const relawanGrid = document.getElementById('relawanGrid');
+    // ======================= GENERATE DAFTAR RELAWAN DI TAB RELAWAN =======================
+    const relawanContainer = document.getElementById('relawanList');
     cities.forEach(city => {
         const kontak = kontakRelawan[city.name];
         if (kontak) {
             const card = document.createElement('div');
-            card.className = 'relawan-card';
+            card.className = 'relawan-card-item';
             card.innerHTML = `
-                <h3><i class="fas fa-map-marker-alt"></i> ${city.name}</h3>
-                <p><i class="fas fa-user-tie"></i> ${kontak.nama}</p>
-                <button class="hubungi-relawan-btn" data-wa="${kontak.wa}" data-kota="${city.name}">
-                    <i class="fab fa-whatsapp"></i> Hubungi Relawan
+                <h4><i class="fas fa-map-marker-alt"></i> ${city.name}</h4>
+                <p><i class="fab fa-whatsapp"></i> ${kontak.nama}<br>📞 ${kontak.wa}</p>
+                <button class="btn-wa-relawan" data-wa="${kontak.wa}" data-kota="${city.name}">
+                    <i class="fab fa-whatsapp"></i> Hubungi Sekarang
                 </button>
             `;
-            relawanGrid.appendChild(card);
+            relawanContainer.appendChild(card);
         }
     });
-    // Event delegation untuk tombol di halaman relawan
-    document.addEventListener('click', function(e) {
-        if (e.target.classList && e.target.classList.contains('hubungi-relawan-btn')) {
-            const wa = e.target.getAttribute('data-wa');
-            const kota = e.target.getAttribute('data-kota');
-            const pesan = `Halo, saya dari ${kota}. Saya ingin melaporkan bencana atau membutuhkan bantuan relawan FBn. Terima kasih.`;
+    // Event listener untuk tombol hubungi di tab relawan
+    document.querySelectorAll('.btn-wa-relawan').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const wa = btn.getAttribute('data-wa');
+            const kota = btn.getAttribute('data-kota');
+            const pesan = `Halo relawan FBn ${kota}, saya membutuhkan informasi atau bantuan terkait bencana. Terima kasih.`;
             window.open(`https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`, '_blank');
-        }
+        });
     });
 
     // ======================= BOTTOM NAVIGATION (5 TAB) =======================
