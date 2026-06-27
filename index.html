@@ -2,879 +2,359 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Peta Bencana Banten - FBn Siaga Bencana</title>
-    <!-- Leaflet CSS + JS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0D47A1">
+    <meta name="description" content="Peta Bencana & Layanan Medis Sosial Banten oleh Relawan FBn. Lapor cepat, pantau aman.">
+    <title>Peta Bencana Banten | FBn Siaga</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Quicksand -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ======================== DESIGN SYSTEM & RESET ======================== */
+        :root {
+            --primary: #0D47A1;
+            --primary-light: #1565C0;
+            --danger: #E63946;
+            --danger-glow: rgba(230, 57, 70, 0.4);
+            --success: #25D366;
+            --bg-body: #F4F7FC;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --card-bg: #FFFFFF;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(145deg, #E8F0FE 0%, #D4E4FC 100%);
-            color: #1A2C3E;
-            padding-bottom: 70px;
+            background-color: var(--bg-body);
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-dark); 
+            padding-bottom: 90px; 
+            line-height: 1.6;
         }
 
-        /* Header dominan biru */
-        .app-header {
-            background: linear-gradient(135deg, #0D47A1, #1565C0);
-            padding: 18px 20px 14px;
-            text-align: center;
+        /* ======================== HEADER ======================== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 16px 20px;
             color: white;
-            border-bottom-left-radius: 32px;
-            border-bottom-right-radius: 32px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
             position: sticky;
             top: 0;
-            z-index: 10;
-        }
-        .app-header h1 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            text-shadow: 2px 2px 0 #002171;
+            z-index: 1000;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(13, 71, 161, 0.15);
         }
-        .app-header p {
-            font-size: 0.7rem;
-            background: rgba(0,0,0,0.25);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 50px;
-            margin-top: 6px;
+        
+        .logo-area { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.1rem; }
+        .logo-area i { font-size: 1.4rem; color: #FFD966; }
+        .header-hotline { font-size: 0.75rem; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+
+        /* ======================== MAIN CONTAINER ======================== */
+        main { padding: 20px 16px; max-width: 480px; margin: 0 auto; }
+        
+        .page { display: none; animation: fadeIn 0.3s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ======================== CARDS & TYPOGRAPHY ======================== */
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            padding: 20px; 
+            margin-bottom: 16px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            border: 1px solid #E2E8F0;
+        }
+        .card h2 { font-size: 1.15rem; margin-bottom: 10px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+
+        /* ======================== BUTTONS (ACCESSIBILITY OPTIMIZED) ======================== */
+        .btn { 
+            border: none; border-radius: 14px; padding: 16px; font-size: 1rem; font-weight: 700; 
+            display: flex; align-items: center; justify-content: center; gap: 10px; 
+            cursor: pointer; width: 100%; transition: 0.2s; min-height: 54px;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-panic { background: var(--danger); color: white; animation: pulseGlow 2s infinite; font-size: 1.1rem; border-radius: 100px; padding: 20px; box-shadow: 0 8px 20px var(--danger-glow); }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-outline { background: white; color: var(--text-dark); border: 2px solid #E2E8F0; }
+        
+        @keyframes pulseGlow { 
+            0% { box-shadow: 0 0 0 0 var(--danger-glow); } 
+            70% { box-shadow: 0 0 0 15px rgba(230,57,70,0); } 
+            100% { box-shadow: 0 0 0 0 rgba(230,57,70,0); } 
         }
 
-        /* Main Content */
-        .main-content {
-            padding: 16px 16px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        /* ======================== MAP & FORM ======================== */
+        #mapid { height: 200px; border-radius: 12px; background: #E2E8F0; margin-bottom: 16px; z-index: 1; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
+        .info-box { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 12px; font-size: 0.85rem; color: var(--primary); margin-bottom: 16px; }
+        .info-box p { margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        
+        textarea { width: 100%; padding: 16px; border-radius: 12px; border: 2px solid #E2E8F0; font-family: inherit; font-size: 1rem; resize: none; outline: none; margin-bottom: 16px; background: #F8FAFC; }
+        textarea:focus { border-color: var(--primary); background: #FFF; }
 
-        /* Tab pages */
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        .page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
+        /* ======================== GRID SERVICES ======================== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .service-item { background: var(--card-bg); border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .service-item:active { background: #F8FAFC; transform: scale(0.96); }
+        .service-item i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
+        .service-item h4 { font-size: 0.95rem; color: var(--text-dark); margin-bottom: 4px; }
+        .service-item p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; }
 
-        /* Map container */
-        .map-container {
-            border-radius: 32px;
-            overflow: hidden;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-            border: 3px solid #42A5F5;
-            margin-bottom: 20px;
-        }
-        #mapid {
-            height: 320px;
-            width: 100%;
-            background: #F0F7FF;
-        }
-
-        /* Action buttons */
-        .action-row {
-            display: flex;
-            gap: 14px;
-            margin: 10px 0 15px;
-            flex-wrap: wrap;
-        }
-        .btn-panic, .btn-share {
-            flex: 1;
-            border: none;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 800;
-            border-radius: 60px;
-            padding: 14px 16px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: 0.05s linear;
-            box-shadow: 0 6px 0 rgba(0,0,0,0.2);
-        }
-        .btn-panic:active, .btn-share:active {
-            transform: translateY(3px);
-            box-shadow: 0 3px 0 rgba(0,0,0,0.2);
-        }
-        .btn-panic {
-            background: #E63946;
-            color: white;
-        }
-        .btn-share {
-            background: #25D366;
-            color: white;
-        }
-        .info-loc {
-            text-align: center;
-            font-size: 0.7rem;
-            background: #E3F2FD;
-            padding: 8px;
-            border-radius: 30px;
-            margin: 8px 0 12px;
-            color: #0D47A1;
-            font-weight: 600;
-        }
-
-        /* Form laporan */
-        .report-form {
-            background: white;
-            border-radius: 32px;
-            padding: 18px;
-            margin-top: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-top: 6px solid #1565C0;
-        }
-        .report-form h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: #0D47A1;
-        }
-        .form-group {
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-        }
-        .form-group input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #64B5F6;
-            border-radius: 28px;
-            background: #F9FBFF;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 24px;
-            border: 1px solid #64B5F6;
-            font-family: 'Quicksand', sans-serif;
-            resize: vertical;
-            background: #F9FBFF;
-        }
-        .preview-img {
-            margin-top: 10px;
-            max-width: 100%;
-            max-height: 150px;
-            border-radius: 20px;
-            display: none;
-            border: 2px solid #42A5F5;
-        }
-        .btn-submit {
-            background: #0D47A1;
-            width: 100%;
-            border: none;
-            padding: 12px;
-            border-radius: 40px;
-            font-weight: 800;
-            color: white;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: 0.1s;
-            box-shadow: 0 4px 0 #002171;
-        }
-        .btn-submit:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #002171;
-        }
-
-        /* Cards untuk tab edukasi & relawan */
-        .edu-card, .relawan-card, .layanan-card {
-            background: white;
-            border-radius: 32px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
-            border-left: 12px solid #1565C0;
-        }
-        .edu-card h3, .relawan-card h3, .layanan-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #0D47A1;
-        }
-        .sub-section {
-            background: #E8F0FE;
-            padding: 12px 16px;
-            border-radius: 24px;
-            margin: 12px 0;
-        }
-        .sub-section h4 {
-            color: #0D47A1;
-            margin-bottom: 8px;
-        }
-        .relawan-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 14px;
-            margin-top: 16px;
-        }
-        .relawan-card-item {
-            background: #F0F7FF;
-            border-radius: 28px;
-            padding: 12px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #90CAF9;
-        }
-        .relawan-card-item h4 {
-            font-weight: 800;
-            color: #0D47A1;
-            margin-bottom: 6px;
-        }
-        .relawan-card-item p {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .btn-wa-relawan {
-            background: #25D366;
-            border: none;
-            border-radius: 40px;
-            padding: 8px 12px;
-            font-weight: 700;
-            font-size: 0.7rem;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            transition: 0.1s;
-            width: 100%;
-            justify-content: center;
-        }
-        .btn-wa-relawan:active {
-            transform: scale(0.97);
-        }
-        .gubernur-card {
-            background: linear-gradient(135deg, #1565C0, #0D47A1);
-            color: white;
-            border-radius: 28px;
-            padding: 14px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .gubernur-card a {
-            color: #FFD966;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        /* Layanan Medis & Sosial - Tombol besar */
-        .layanan-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        .layanan-item {
-            background: #F0F7FF;
-            border-radius: 28px;
-            padding: 20px 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 2px solid #90CAF9;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .layanan-item:active {
-            transform: scale(0.96);
-        }
-        .layanan-item i {
-            font-size: 3rem;
-            color: #0D47A1;
-            margin-bottom: 8px;
-        }
-        .layanan-item h4 {
-            font-weight: 800;
-            color: #0D47A1;
-            margin-bottom: 6px;
-        }
-        .layanan-item p {
-            font-size: 0.75rem;
-            color: #1A2C3E;
-        }
-        .layanan-item .btn-layanan {
-            background: #25D366;
-            border: none;
-            border-radius: 40px;
-            padding: 10px 16px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: 0.1s;
-        }
-        .layanan-item .btn-layanan:active {
-            transform: scale(0.95);
-        }
-
-        /* Bottom Navigation Fixed 6 tabs */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #FFFFFFF2;
-            backdrop-filter: blur(12px);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 6px 4px 12px;
-            border-top: 1px solid #90CAF9;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
-            z-index: 20;
-            max-width: 600px;
-            margin: 0 auto;
-            border-radius: 32px 32px 0 0;
+        /* ======================== BOTTOM NAV ======================== */
+        nav.bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; border-top: 1px solid #E2E8F0;
+            display: flex; justify-content: space-around;
+            padding: 10px 4px 20px; z-index: 1000;
         }
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            background: none;
-            border: none;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 600;
-            font-size: 0.6rem;
-            color: #2C5F8A;
-            cursor: pointer;
-            transition: 0.1s;
-            padding: 4px 6px;
-            border-radius: 30px;
+            background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px;
+            font-size: 0.7rem; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 8px; width: 20%;
         }
-        .nav-item i {
-            font-size: 1.2rem;
-        }
-        .nav-item.active {
-            color: #0D47A1;
-            background: #D6E6FF;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.6rem;
-            padding: 12px;
-            color: #1565C0;
-        }
-        @media (max-width: 480px) {
-            .app-header h1 { font-size: 1.2rem; }
-            .map-container #mapid { height: 260px; }
-            .nav-item span { font-size: 0.55rem; }
-            .layanan-grid { grid-template-columns: 1fr 1fr; }
-        }
+        .nav-item i { font-size: 1.3rem; margin-bottom: 2px; }
+        .nav-item.active { color: var(--primary); }
+        .nav-item.active i { transform: scale(1.1); transition: 0.2s; }
     </style>
 </head>
 <body>
 
-<div class="app-header">
-    <h1><i class="fas fa-map-marked-alt"></i> PETA BENCANA BANTEN</h1>
-    <p><i class="fas fa-hand-peace"></i> Fesbukbantennews (FBn) · Relawan Siaga Bencana Se-Banten</p>
-</div>
-
-<div class="main-content">
-    <!-- HALAMAN BERANDA (Peta + Panic + Upload) -->
-    <div id="homePage" class="page active">
-        <div class="map-container">
-            <div id="mapid"></div>
-        </div>
-        <div class="action-row">
-            <button id="panicButton" class="btn-panic"><i class="fas fa-exclamation-triangle"></i> PANIC BUTTON</button>
-            <button id="shareWaButton" class="btn-share"><i class="fab fa-whatsapp"></i> SHARE LOKASI</button>
-        </div>
-        <div class="info-loc" id="locationStatus">
-            <i class="fas fa-map-marker-alt"></i> Tekan Panic → tandai lokasimu di peta | Share → kirim ke relawan + Gubernur FBn
-        </div>
-
-        <!-- Form laporan bencana -->
-        <div class="report-form">
-            <h3><i class="fas fa-upload"></i> LAPORKAN KEJADIAN BENCANA</h3>
-            <div class="form-group">
-                <label><i class="fas fa-camera"></i> Foto Lokasi Bencana</label>
-                <input type="file" id="photoInput" accept="image/*" capture="environment">
-                <img id="previewPhoto" class="preview-img" alt="Preview foto">
-            </div>
-            <div class="form-group">
-                <label><i class="fas fa-pen-alt"></i> Kronologi Kejadian</label>
-                <textarea id="kronologi" rows="3" placeholder="Contoh: Gempa terjadi pukul 10.30 WIB, bangunan rusak berat, warga butuh evakuasi..."></textarea>
-            </div>
-            <button id="sendReportBtn" class="btn-submit"><i class="fab fa-whatsapp"></i> KIRIM LAPORAN KE RELAWAN FBn</button>
-            <div style="font-size: 0.7rem; margin-top: 12px; text-align: center; color: #0D47A1;">
-                <i class="fas fa-info-circle"></i> Laporan akan dikirim ke Koordinator FBn Banten & Gubernur FBn (Kang Lulu).
-            </div>
-        </div>
-
-        <div style="background: #E3F2FD; border-radius: 28px; padding: 12px; margin-top: 16px; text-align: center;">
-            <i class="fas fa-users"></i> <strong>Relawan FBn tersedia di 8 Kab/Kota Banten</strong><br>
-            <span style="font-size: 0.7rem;">Klik marker di peta untuk menghubungi relawan setempat 📍</span>
-        </div>
+<header>
+    <div class="logo-area">
+        <i class="fas fa-shield-heart"></i> FBn Siaga
     </div>
-
-    <!-- HALAMAN RELAWAN -->
-    <div id="relawanPage" class="page">
-        <div class="relawan-card">
-            <h3><i class="fas fa-user-tie"></i> Kontak Gubernur FBn Banten</h3>
-            <div class="gubernur-card">
-                <i class="fas fa-crown"></i> <strong>Kang Lulu (Gubernur FBn)</strong><br>
-                📞 <a href="https://wa.me/628170050090" target="_blank">08170050090</a> (WhatsApp)<br>
-                <small>Siaga 24 jam untuk koordinasi bencana</small>
-            </div>
-            <h3><i class="fas fa-handshake"></i> Relawan FBn per Kabupaten/Kota</h3>
-            <div id="relawanList" class="relawan-grid"></div>
-            <p style="margin-top: 16px; font-size: 0.7rem; text-align: center;"><i class="fas fa-phone-alt"></i> Hubungi relawan terdekat untuk respon cepat.</p>
-        </div>
+    <div class="header-hotline">
+        <i class="fas fa-phone-alt"></i> Darurat: 0817-0050-090
     </div>
+</header>
 
-    <!-- HALAMAN LAYANAN MEDIS & SOSIAL (BARU) -->
-    <div id="layananPage" class="page">
-        <div class="layanan-card">
-            <h3><i class="fas fa-ambulance"></i> Layanan Darurat Medis & Sosial</h3>
-            <p style="margin-bottom: 16px;">Butuh bantuan cepat? Klik salah satu layanan di bawah untuk terhubung langsung dengan <strong>Gubernur FBn (Kang Lulu)</strong> via WhatsApp. Tim relawan akan segera merespon.</p>
-            <div class="layanan-grid">
-                <!-- Ambulan -->
-                <div class="layanan-item" onclick="layananWA('Ambulan', 'Saya membutuhkan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan ke lokasi saya.')">
+<main>
+    <section id="homePage" class="page active">
+        <div id="step1" class="card" style="text-align: center; padding: 30px 20px;">
+            <i class="fas fa-triangle-exclamation" style="font-size: 3rem; color: var(--danger); margin-bottom: 16px;"></i>
+            <h2>Ada Keadaan Darurat?</h2>
+            <p class="desc" style="margin-bottom: 24px;">Tekan tombol di bawah untuk melaporkan kejadian bencana atau meminta bantuan evakuasi medis.</p>
+            <button class="btn btn-panic" onclick="goToStep(2)">
+                <i class="fas fa-bullhorn"></i> LAPORKAN SEKARANG
+            </button>
+        </div>
+
+        <div id="step2" class="card" style="display: none;">
+            <h2><i class="fas fa-location-dot"></i> Tentukan Lokasi Anda</h2>
+            <p class="desc">Sistem sedang mencari lokasi Anda untuk memudahkan relawan menuju titik kejadian.</p>
+            <div id="mapid">Memuat Peta... Pastikan GPS/Lokasi aktif.</div>
+            <div class="info-box">
+                <p><i class="fas fa-clock"></i> <span id="lblWaktu">Memuat waktu...</span></p>
+                <p><i class="fas fa-map-pin"></i> <span id="lblKoordinat">Mencari kordinat...</span></p>
+            </div>
+            <button class="btn btn-primary" id="btnNext" onclick="goToStep(3)" disabled>
+                Lokasi Sudah Sesuai <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-outline" style="margin-top: 10px;" onclick="goToStep(1)">Batal</button>
+        </div>
+
+        <div id="step3" class="card" style="display: none;">
+            <h2><i class="fas fa-comment-medical"></i> Ceritakan Kejadian</h2>
+            <p class="desc">Jelaskan singkat apa yang terjadi dan bantuan apa yang paling mendesak (Misal: Butuh perahu karet, ada lansia).</p>
+            <textarea id="txtKronologi" rows="4" placeholder="Ketik di sini..."></textarea>
+            
+            <button class="btn btn-success" onclick="kirimLaporanWA()">
+                <i class="fab fa-whatsapp"></i> KIRIM LAPORAN (WHATSAPP)
+            </button>
+            <button class="btn btn-outline" style="margin-top: 10px;" onclick="goToStep(2)">Kembali ke Peta</button>
+        </div>
+    </section>
+
+    <section id="layananPage" class="page">
+        <div class="card">
+            <h2><i class="fas fa-briefcase-medical"></i> Bantuan Kesehatan & Sosial</h2>
+            <p class="desc">Layanan khusus untuk masyarakat kurang mampu. Semua permintaan akan dikelola oleh Gubernur FBn (Kang Lulu).</p>
+            <div class="grid-2">
+                <div class="service-item" onclick="mintaLayanan('Ambulan Darurat')">
                     <i class="fas fa-ambulance"></i>
                     <h4>Ambulan</h4>
-                    <p>Darurat medis, evakuasi pasien, rujukan RS</p>
-                    <button class="btn-layanan"><i class="fab fa-whatsapp"></i> Hubungi Sekarang</button>
+                    <p>Antar-jemput pasien RS</p>
                 </div>
-                <!-- Oksigen -->
-                <div class="layanan-item" onclick="layananWA('Oksigen', 'Saya membutuhkan tabung oksigen untuk pasien sesak napas. Mohon bantuan segera.')">
+                <div class="service-item" onclick="mintaLayanan('Alat Kesehatan')">
                     <i class="fas fa-lungs"></i>
-                    <h4>Oksigen</h4>
-                    <p>Kebutuhan oksigen darurat, tabung, konsentrator</p>
-                    <button class="btn-layanan"><i class="fab fa-whatsapp"></i> Hubungi Sekarang</button>
+                    <h4>Alkes & Obat</h4>
+                    <p>Pinjam oksigen, kursi roda</p>
                 </div>
-                <!-- Rumah Singgah -->
-                <div class="layanan-item" onclick="layananWA('Rumah Singgah', 'Saya membutuhkan tempat singgah/penampungan sementara untuk pasien miskin/duafa. Mohon bantuan.')">
-                    <i class="fas fa-home"></i>
+                <div class="service-item" onclick="mintaLayanan('Rumah Singgah')">
+                    <i class="fas fa-house-chimney-medical"></i>
                     <h4>Rumah Singgah</h4>
-                    <p>Tempat penampungan sementara bagi pasien miskin/duafa</p>
-                    <button class="btn-layanan"><i class="fab fa-whatsapp"></i> Hubungi Sekarang</button>
+                    <p>Tempat istirahat keluarga pasien</p>
+                </div>
+                <div class="service-item" onclick="mintaLayanan('Bantuan Sosial')">
+                    <i class="fas fa-hands-holding-child"></i>
+                    <h4>Bansos Dhuafa</h4>
+                    <p>Sembako & pakan darurat</p>
                 </div>
             </div>
-            <div style="margin-top: 16px; background: #E3F2FD; border-radius: 20px; padding: 12px; text-align: center;">
-                <i class="fas fa-info-circle"></i> Semua permintaan akan diteruskan ke <strong>Gubernur FBn (Kang Lulu)</strong> untuk koordinasi cepat.
+        </div>
+    </section>
+
+    <section id="relawanPage" class="page">
+        <div class="card">
+            <h2><i class="fas fa-users"></i> Relawan Siaga Banten</h2>
+            <p class="desc">Pilih wilayah Anda untuk terhubung langsung dengan koordinator lokal FBn.</p>
+            <div id="relawanList" class="grid-2">
+                </div>
+        </div>
+    </section>
+    
+    <section id="informasiPage" class="page">
+        <div class="card">
+            <h2><i class="fas fa-book-medical"></i> Edukasi Keselamatan</h2>
+            <div style="margin-top: 16px;">
+                <h4 style="color:var(--text-dark); margin-bottom:4px;">🌊 Saat Gempa & Tsunami</h4>
+                <p class="desc">Berlindung di bawah meja kuat. Hindari bangunan tinggi. Jika di dekat pantai dan terasa gempa kuat, segera lari ke tempat tinggi.</p>
+                
+                <h4 style="color:var(--text-dark); margin-bottom:4px;">🔥 Saat Kebakaran</h4>
+                <p class="desc">Tutup hidung dengan kain basah. Merangkak jika banyak asap. Segera keluar dan jangan kembali untuk mengambil barang.</p>
             </div>
         </div>
-    </div>
+    </section>
+</main>
 
-    <!-- HALAMAN LANGKAH KESELAMATAN -->
-    <div id="safetyPage" class="page">
-        <div class="edu-card">
-            <h3><i class="fas fa-shield-alt"></i> Langkah Keselamatan Saat Bencana</h3>
-            <div class="sub-section">
-                <h4>🌊 Gempa Bumi</h4>
-                <p>Drop, Cover, Hold On! Jauhi kaca, rak, berlindung di bawah meja. Setelah gempa, evakuasi ke tempat terbuka.</p>
-            </div>
-            <div class="sub-section">
-                <h4>🌊 Banjir Bandang</h4>
-                <p>Segera ke tempat tinggi, hindari arus listrik, jangan melewati genangan. Siapkan dokumen penting.</p>
-            </div>
-            <div class="sub-section">
-                <h4>🌊 Tsunami</h4>
-                <p>Jika pantai terasa gempa kuat, segera menuju daerah tinggi atau lantai atas gedung kuat. Waspada surutnya air laut.</p>
-            </div>
-            <div class="sub-section">
-                <h4>🔥 Kebakaran Hutan / Lahan</h4>
-                <p>Gunakan masker basah, evakuasi ke arah berlawanan angin, laporkan ke petugas.</p>
-            </div>
-            <div class="sub-section">
-                <h4>⚠️ Bencana Sosial / Konflik</h4>
-                <p>Jauhi kerumunan, cari tempat aman, hubungi aparat atau relawan FBn.</p>
-            </div>
-            <p style="margin-top: 12px; font-weight: bold;"><i class="fas fa-phone-alt"></i> Nomor darurat nasional: 112 | Call center BNPB: 117</p>
-        </div>
-    </div>
-
-    <!-- HALAMAN JENIS BENCANA -->
-    <div id="disasterTypesPage" class="page">
-        <div class="edu-card">
-            <h3><i class="fas fa-globe-asia"></i> Jenis Bencana di Wilayah Banten</h3>
-            <div class="sub-section">
-                <h4>🏔️ Bencana Alam</h4>
-                <p>Gempa bumi, tsunami, gunung meletus (Anak Krakatau), banjir, tanah longsor, cuaca ekstrem, abrasi pantai.</p>
-            </div>
-            <div class="sub-section">
-                <h4>🏭 Bencana Non Alam</h4>
-                <p>Kebakaran hutan/lahan, kecelakaan industri, kebakaran permukiman, wabah penyakit (COVID-19, DBD, dll).</p>
-            </div>
-            <div class="sub-section">
-                <h4>👥 Bencana Sosial</h4>
-                <p>Konflik sosial antarwarga, aksi kekerasan massal, terorisme, gangguan keamanan yang berdampak luas.</p>
-            </div>
-            <div style="background:#E3F2FD; padding: 12px; border-radius: 24px; margin-top: 12px;">
-                <i class="fas fa-hand-holding-heart"></i> <strong>Peran Relawan FBn:</strong> Siaga & tanggap cepat untuk semua jenis bencana di Provinsi Banten.
-            </div>
-        </div>
-    </div>
-
-    <!-- HALAMAN TAHAPAN KEBENCANAAN -->
-    <div id="phasesPage" class="page">
-        <div class="edu-card">
-            <h3><i class="fas fa-chart-line"></i> Siklus Penanggulangan Bencana</h3>
-            <div class="sub-section">
-                <h4>📌 Pra Bencana</h4>
-                <p>Mitigasi (pembangunan tahan gempa, peta rawan bencana), kesiapsiagaan (simulasi, early warning), pencegahan.</p>
-            </div>
-            <div class="sub-section">
-                <h4>🚨 Tanggap Darurat</h4>
-                <p>Pencarian & penyelamatan, evakuasi, dapur umum, posko kesehatan, penanganan pengungsi, relawan bergerak cepat.</p>
-            </div>
-            <div class="sub-section">
-                <h4>🏗️ Pasca Bencana</h4>
-                <p>Rehabilitasi (perbaikan infrastruktur darurat), rekonstruksi (bangunan permanen), pemulihan psikososial, peningkatan kapasitas.</p>
-            </div>
-            <div class="info-loc" style="margin-top: 16px;">
-                <i class="fas fa-calendar-alt"></i> FBn berperan aktif di setiap fase: edukasi pra bencana, relawan tanggap darurat, dan dukungan pemulihan.
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bottom Navigation 6 TAB: Beranda, Relawan, Layanan, Keselamatan, Jenis, Tahapan -->
-<div class="bottom-nav">
-    <button class="nav-item active" data-tab="home"><i class="fas fa-home"></i><span>Beranda</span></button>
-    <button class="nav-item" data-tab="relawan"><i class="fas fa-users"></i><span>Relawan</span></button>
-    <button class="nav-item" data-tab="layanan"><i class="fas fa-ambulance"></i><span>Layanan</span></button>
-    <button class="nav-item" data-tab="safety"><i class="fas fa-heartbeat"></i><span>Keselamatan</span></button>
-    <button class="nav-item" data-tab="types"><i class="fas fa-bolt"></i><span>Jenis</span></button>
-    <button class="nav-item" data-tab="phases"><i class="fas fa-tasks"></i><span>Tahapan</span></button>
-</div>
+<nav class="bottom-nav">
+    <button class="nav-item active" data-target="homePage"><i class="fas fa-house"></i> Lapor</button>
+    <button class="nav-item" data-target="layananPage"><i class="fas fa-truck-medical"></i> Layanan</button>
+    <button class="nav-item" data-target="relawanPage"><i class="fas fa-headset"></i> Relawan</button>
+    <button class="nav-item" data-target="informasiPage"><i class="fas fa-circle-info"></i> Info</button>
+</nav>
 
 <script>
-    // ======================= DATA KABUPATEN BANTEN & KONTAK RELAWAN FBn =======================
-    const cities = [
-        { name: "Kota Serang", lat: -6.1188, lng: 106.1502, desc: "Ibu Kota Provinsi" },
-        { name: "Kab. Serang", lat: -6.2580, lng: 106.2190, desc: "Ibukota Ciruas" },
-        { name: "Kota Cilegon", lat: -6.0121, lng: 106.0250, desc: "Kota Industri" },
-        { name: "Kab. Pandeglang", lat: -6.3140, lng: 106.1050, desc: "Ibukota Pandeglang" },
-        { name: "Kab. Lebak", lat: -6.5190, lng: 106.2490, desc: "Ibukota Rangkasbitung" },
-        { name: "Kab. Tangerang", lat: -6.2660, lng: 106.4610, desc: "Ibukota Tigaraksa" },
-        { name: "Kota Tangerang", lat: -6.1780, lng: 106.6310, desc: "Kota Tangerang" },
-        { name: "Kota Tangerang Selatan", lat: -6.2830, lng: 106.7170, desc: "Tangsel" }
+    // ======================== KONFIGURASI ========================
+    const HOTLINE_WA = "628170050090"; // Nomor Gubernur FBn Kang Lulu
+    let dataLaporan = { lat: "-6.1188", lng: "106.1502", waktu: "" }; // Default Banten
+    let mapInstance = null, marker = null;
+
+    const relawanDaerah = [
+        { kota: "Serang", wa: "628170050090" },
+        { kota: "Cilegon", wa: "628170050090" },
+        { kota: "Pandeglang", wa: "628170050090" },
+        { kota: "Lebak", wa: "628170050090" },
+        { kota: "Tangerang Raya", wa: "628170050090" } // Disederhanakan agar rapi
     ];
 
-    // Nomor WhatsApp relawan FBn per kabupaten
-    const kontakRelawan = {
-        "Kota Serang": { wa: "6285712345678", nama: "Koordinator FBn Serang" },
-        "Kab. Serang": { wa: "6285712345679", nama: "Koordinator FBn Kab Serang" },
-        "Kota Cilegon": { wa: "6285712345680", nama: "Relawan FBn Cilegon" },
-        "Kab. Pandeglang": { wa: "6285712345681", nama: "FBn Pandeglang Siaga" },
-        "Kab. Lebak": { wa: "6285712345682", nama: "FBn Lebak Tanggap" },
-        "Kab. Tangerang": { wa: "6285712345683", nama: "FBn Kab Tangerang" },
-        "Kota Tangerang": { wa: "6285712345684", nama: "FBn Kota Tangerang" },
-        "Kota Tangerang Selatan": { wa: "6285712345685", nama: "FBn Tangsel Peduli" }
-    };
-    // Nomor pusat koordinasi FBn Banten
-    const FBnHotline = "6285712345600";
-    // Nomor Gubernur FBn (Kang Lulu)
-    const GUBERNUR_WA = "628170050090";
+    // ======================== NAVIGASI BAWAH ========================
+    document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Ubah tombol aktif
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Tampilkan halaman
+            const target = btn.getAttribute('data-target');
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(target).classList.add('active');
+            
+            // Reset tab Lapor jika kembali
+            if(target === 'homePage') goToStep(1);
+        });
+    });
 
-    // ======================= INISIALISASI PETA =======================
-    let map = L.map('mapid').setView([-6.3, 106.2], 9.2);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB',
-        subdomains: 'abcd',
-        maxZoom: 18
-    }).addTo(map);
+    // ======================== LOGIC STEPPER DARURAT ========================
+    function goToStep(stepNumber) {
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('step3').style.display = 'none';
+        document.getElementById(`step${stepNumber}`).style.display = 'block';
 
-    // Tambahkan marker tiap kabupaten/kota dengan tombol hubungi relawan di popup
-    cities.forEach(city => {
-        const kontak = kontakRelawan[city.name];
-        const waNumber = kontak ? kontak.wa : FBnHotline;
-        const namaRelawan = kontak ? kontak.nama : "Relawan FBn setempat";
-        const popupContent = `
-            <b style="color:#0D47A1;">${city.name}</b><br>
-            <i class="fas fa-hand-sparkles"></i> ${namaRelawan}<br>
-            <button class="contact-relawan-btn" data-wa="${waNumber}" data-kota="${city.name}" style="background:#25D366; border:none; border-radius:30px; padding:6px 12px; margin-top:6px; color:white; font-weight:bold; cursor:pointer;">
-                <i class="fab fa-whatsapp"></i> Hubungi Relawan
+        if(stepNumber === 2) {
+            dapatkanLokasi();
+        }
+    }
+
+    function dapatkanLokasi() {
+        const waktuSkrg = new Date().toLocaleString('id-ID');
+        document.getElementById("lblWaktu").innerText = waktuSkrg;
+        dataLaporan.waktu = waktuSkrg;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    dataLaporan.lat = pos.coords.latitude;
+                    dataLaporan.lng = pos.coords.longitude;
+                    tampilkanPeta();
+                },
+                (err) => {
+                    alert("Gagal mengambil lokasi akurat. Menggunakan lokasi default (Banten).");
+                    tampilkanPeta(); // Fallback
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        } else {
+            tampilkanPeta();
+        }
+    }
+
+    function tampilkanPeta() {
+        document.getElementById("lblKoordinat").innerText = `${dataLaporan.lat}, ${dataLaporan.lng}`;
+        document.getElementById("btnNext").disabled = false;
+        
+        // Render peta hanya jika library Leaflet sudah ter-load
+        if(typeof L !== 'undefined') {
+            document.getElementById('mapid').innerHTML = ""; // Bersihkan text loading
+            if(!mapInstance) {
+                mapInstance = L.map('mapid', { zoomControl: false }).setView([dataLaporan.lat, dataLaporan.lng], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapInstance);
+                marker = L.marker([dataLaporan.lat, dataLaporan.lng]).addTo(mapInstance);
+            } else {
+                mapInstance.setView([dataLaporan.lat, dataLaporan.lng], 14);
+                marker.setLatLng([dataLaporan.lat, dataLaporan.lng]);
+                mapInstance.invalidateSize(); // Fix map render issue in hidden divs
+            }
+        } else {
+            document.getElementById('mapid').innerText = "Versi Ringan: Peta visual disembunyikan untuk menghemat kuota, namun koordinat Anda berhasil dikunci.";
+        }
+    }
+
+    // ======================== PENGIRIMAN PESAN WA ========================
+    function kirimLaporanWA() {
+        const kronologi = document.getElementById("txtKronologi").value.trim() || "Tidak ada rincian tambahan.";
+        // BUG FIX: Menggunakan link Maps standard yang benar dan mudah di-klik di WA
+        const linkMaps = `https://maps.google.com/?q=${dataLaporan.lat},${dataLaporan.lng}`;
+        
+        const pesan = `🚨 *LAPORAN DARURAT BENCANA - FBn* 🚨\n\n` +
+                      `🕒 Waktu: ${dataLaporan.waktu}\n` +
+                      `📍 Lokasi:\n${linkMaps}\n\n` +
+                      `📝 Laporan / Kondisi:\n"${kronologi}"\n\n` +
+                      `_Mohon segera direspon. Dikirim via Aplikasi FBn Siaga_`;
+        
+        window.open(`https://wa.me/${HOTLINE_WA}?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    function mintaLayanan(jenisLayanan) {
+        const pesan = `Halo Gubernur FBn (Kang Lulu). Saya masyarakat kurang mampu membutuhkan bantuan layanan *${jenisLayanan}*. Mohon petunjuk dan persyaratannya. Terima kasih.`;
+        window.open(`https://wa.me/${HOTLINE_WA}?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    // ======================== RENDER LIST RELAWAN ========================
+    const relawanContainer = document.getElementById('relawanList');
+    relawanDaerah.forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'service-item';
+        div.innerHTML = `
+            <i class="fas fa-user-shield" style="font-size:1.8rem; margin-bottom:5px;"></i>
+            <h4>FBn ${r.kota}</h4>
+            <button class="btn btn-success" style="padding:8px; margin-top:8px; font-size:0.8rem;" onclick="window.open('https://wa.me/${r.wa}', '_blank')">
+                <i class="fab fa-whatsapp"></i> Hubungi
             </button>
         `;
-        const marker = L.marker([city.lat, city.lng], {
-            icon: L.divIcon({
-                html: `<div style="background:#1565C0; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border:2px solid white; box-shadow:0 2px 6px rgba(0,0,0,0.3);"><i class="fas fa-hard-hat" style="color:white; font-size:14px;"></i></div>`,
-                iconSize: [32,32],
-                popupAnchor: [0,-16]
-            })
-        }).addTo(map);
-        marker.bindPopup(popupContent);
+        relawanContainer.appendChild(div);
     });
-    map.fitBounds(L.latLngBounds(cities.map(c => [c.lat, c.lng])).pad(0.2));
-
-    // Event delegation untuk tombol hubungi di popup
-    map.on('popupopen', function(e) {
-        const container = e.popup.getElement();
-        if (container) {
-            const btn = container.querySelector('.contact-relawan-btn');
-            if (btn) {
-                btn.addEventListener('click', function(ev) {
-                    const wa = this.getAttribute('data-wa');
-                    const kota = this.getAttribute('data-kota');
-                    const pesan = `Halo kak, saya dari ${kota}. Saya ingin melaporkan situasi bencana atau membutuhkan info kesiapsiagaan. Mohon bantuan relawan FBn. Terima kasih.`;
-                    window.open(`https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`, '_blank');
-                });
-            }
-        }
-    });
-
-    // ======================= PANIC BUTTON & SHARE LOKASI =======================
-    let userLocationMarker = null;
-    let lastKnownLocation = null;
-
-    function showStatus(msg, isError = false) {
-        const statusDiv = document.getElementById('locationStatus');
-        statusDiv.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}`;
-        setTimeout(() => {
-            if (document.getElementById('locationStatus')) {
-                document.getElementById('locationStatus').innerHTML = `<i class="fas fa-map-marker-alt"></i> Tekan Panic → tandai lokasimu di peta | Share → kirim ke relawan + Gubernur FBn`;
-            }
-        }, 4000);
-    }
-
-    async function getLocationPromise(options) {
-        return new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject, options);
-        });
-    }
-
-    // Panic Button
-    document.getElementById('panicButton').addEventListener('click', async () => {
-        const btn = document.getElementById('panicButton');
-        const originalHtml = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Mengambil lokasi...';
-        btn.disabled = true;
-        if (!navigator.geolocation) {
-            alert("Browser tidak mendukung GPS. Hubungi relawan via marker peta.");
-            btn.innerHTML = originalHtml;
-            btn.disabled = false;
-            return;
-        }
-        try {
-            const pos = await getLocationPromise({ enableHighAccuracy: true, timeout: 10000 });
-            const { latitude: lat, longitude: lng } = pos.coords;
-            if (userLocationMarker) map.removeLayer(userLocationMarker);
-            userLocationMarker = L.circleMarker([lat, lng], {
-                color: "#E63946", fillColor: "#FF4D4D", fillOpacity: 0.9, radius: 16, weight: 3
-            }).addTo(map);
-            userLocationMarker.bindPopup("<b style='color:#E63946'>📍 LOKASI DARURAT</b><br>Anda di sini. Tekan SHARE untuk kirim ke relawan + Gubernur").openPopup();
-            map.flyTo([lat, lng], 12);
-            lastKnownLocation = { lat, lng };
-            showStatus("✅ Titik merah darurat telah ditandai! Gunakan SHARE LOKASI untuk bantuan cepat.");
-        } catch (err) {
-            let errorMsg = "Gagal ambil lokasi. Cek izin GPS.";
-            if (err.code === 1) errorMsg = "Izin lokasi ditolak. Aktifkan manual.";
-            alert(errorMsg);
-            showStatus(errorMsg, true);
-        }
-        btn.innerHTML = originalHtml;
-        btn.disabled = false;
-    });
-
-    // Share Lokasi: kirim ke hotline FBn dan sertakan nomor gubernur
-    document.getElementById('shareWaButton').addEventListener('click', async () => {
-        const shareBtn = document.getElementById('shareWaButton');
-        shareBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Menyiapkan lokasi...';
-        shareBtn.disabled = true;
-        let lat = lastKnownLocation?.lat, lng = lastKnownLocation?.lng;
-        if (!lat || !lng) {
-            if (navigator.geolocation) {
-                try {
-                    const pos = await getLocationPromise({ enableHighAccuracy: true, timeout: 6000 });
-                    lat = pos.coords.latitude;
-                    lng = pos.coords.longitude;
-                    lastKnownLocation = { lat, lng };
-                } catch(e) { console.warn(e); }
-            }
-        }
-        let message = `🚨 *LAPORAN BENCANA BANTEN* 🚨\n\nSaya membutuhkan bantuan relawan FBn!\n`;
-        if (lat && lng) {
-            const mapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
-            message += `📍 *Lokasi saya:* ${mapsLink}\n(Lat: ${lat}, Lng: ${lng})\n\n`;
-        } else {
-            message += `📍 (Lokasi tidak dapat diakses) Saya membutuhkan pendampingan darurat.\n\n`;
-        }
-        message += `Aplikasi Peta Bencana Banten - Fesbukbantennews. Mohon segera direspon.\n\n`;
-        message += `📞 *Kontak tambahan: Gubernur FBn (Kang Lulu) 08170050090* (bisa juga dihubungi untuk koordinasi).`;
-        const waUrl = `https://wa.me/${FBnHotline}?text=${encodeURIComponent(message)}`;
-        window.open(waUrl, '_blank');
-        shareBtn.innerHTML = '<i class="fab fa-whatsapp"></i> SHARE LOKASI';
-        shareBtn.disabled = false;
-        showStatus("Pesan lokasi telah dibuka, nomor Gubernur disertakan. Kirimkan ke relawan!");
-    });
-
-    // ======================= UPLOAD FOTO & KRONOLOGI =======================
-    const photoInput = document.getElementById('photoInput');
-    const previewImg = document.getElementById('previewPhoto');
-    photoInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                previewImg.src = event.target.result;
-                previewImg.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        } else {
-            previewImg.style.display = 'none';
-        }
-    });
-
-    // Tombol Kirim Laporan Bencana
-    document.getElementById('sendReportBtn').addEventListener('click', async () => {
-        const kronologi = document.getElementById('kronologi').value.trim();
-        const hasPhoto = photoInput.files.length > 0;
-        if (!kronologi && !hasPhoto) {
-            alert("Silakan tulis kronologi kejadian atau unggah foto bencana.");
-            return;
-        }
-        const btnSend = document.getElementById('sendReportBtn');
-        btnSend.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Mengirim...';
-        btnSend.disabled = true;
-        
-        let lat = lastKnownLocation?.lat;
-        let lng = lastKnownLocation?.lng;
-        if (!lat || !lng) {
-            if (navigator.geolocation) {
-                try {
-                    const pos = await getLocationPromise({ timeout: 5000 });
-                    lat = pos.coords.latitude;
-                    lng = pos.coords.longitude;
-                    lastKnownLocation = { lat, lng };
-                } catch(e) { /* gagal */ }
-            }
-        }
-        let locationText = "";
-        if (lat && lng) {
-            locationText = `📍 Lokasi kejadian: https://www.google.com/maps?q=${lat},${lng}\n`;
-        } else {
-            locationText = "📍 Lokasi tidak terdeteksi, mohon lampirkan info daerah.\n";
-        }
-        let message = `🚨 *LAPORAN BENCANA - RELAWAN FBn BANTEN* 🚨\n\n`;
-        message += `📝 *KRONOLOGI:* ${kronologi || "Tidak diisi"}\n\n`;
-        message += `${locationText}\n`;
-        if (hasPhoto) {
-            message += `📸 *Foto bencana telah dipilih.* Mohon kirimkan foto secara manual setelah pesan ini.\n`;
-        }
-        message += `\n📞 *Kontak Gubernur FBn (Kang Lulu): 08170050090* (bisa dihubungi untuk koordinasi darurat).\n`;
-        message += `\n_Dikirim dari Aplikasi Peta Bencana Banten_`;
-        const waUrl = `https://wa.me/${FBnHotline}?text=${encodeURIComponent(message)}`;
-        window.open(waUrl, '_blank');
-        setTimeout(() => {
-            btnSend.innerHTML = '<i class="fab fa-whatsapp"></i> KIRIM LAPORAN KE RELAWAN FBn';
-            btnSend.disabled = false;
-            showStatus("Laporan terkirim via WhatsApp. Relawan & Gubernur akan terima notifikasi.");
-            document.getElementById('kronologi').value = '';
-            photoInput.value = '';
-            previewImg.style.display = 'none';
-        }, 500);
-    });
-
-    // ======================= GENERATE DAFTAR RELAWAN DI TAB RELAWAN =======================
-    const relawanContainer = document.getElementById('relawanList');
-    cities.forEach(city => {
-        const kontak = kontakRelawan[city.name];
-        if (kontak) {
-            const card = document.createElement('div');
-            card.className = 'relawan-card-item';
-            card.innerHTML = `
-                <h4><i class="fas fa-map-marker-alt"></i> ${city.name}</h4>
-                <p><i class="fab fa-whatsapp"></i> ${kontak.nama}<br>📞 ${kontak.wa}</p>
-                <button class="btn-wa-relawan" data-wa="${kontak.wa}" data-kota="${city.name}">
-                    <i class="fab fa-whatsapp"></i> Hubungi Sekarang
-                </button>
-            `;
-            relawanContainer.appendChild(card);
-        }
-    });
-    // Event listener untuk tombol hubungi di tab relawan
-    document.querySelectorAll('.btn-wa-relawan').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const wa = btn.getAttribute('data-wa');
-            const kota = btn.getAttribute('data-kota');
-            const pesan = `Halo relawan FBn ${kota}, saya membutuhkan informasi atau bantuan terkait bencana. Terima kasih.`;
-            window.open(`https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`, '_blank');
-        });
-    });
-
-    // ======================= FUNGSI LAYANAN (Ambulan, Oksigen, Rumah Singgah) =======================
-    function layananWA(jenis, pesanDasar) {
-        // Ambil lokasi terakhir jika ada
-        let lat = lastKnownLocation?.lat;
-        let lng = lastKnownLocation?.lng;
-        let lokasiText = "";
-        if (lat && lng) {
-            lokasiText = `\n📍 Lokasi saya: https://www.google.com/maps?q=${lat},${lng}`;
-        } else {
-            lokasiText = "\n📍 (Lokasi tidak terdeteksi, mohon lampirkan alamat lengkap)";
-        }
-        const pesan = `🚨 *LAYANAN ${jenis.toUpperCase()} - FBn BANTEN* 🚨\n\n${pesanDasar}${lokasiText}\n\n📞 *Hubungi Gubernur FBn (Kang Lulu) untuk koordinasi.*\n_Dikirim dari Aplikasi Peta Bencana Banten_`;
-        const waUrl = `https://wa.me/${GUBERNUR_WA}?text=${encodeURIComponent(pesan)}`;
-        window.open(waUrl, '_blank');
-    }
-
-    // ======================= BOTTOM NAVIGATION (6 TAB) =======================
-    const pages = {
-        home: document.getElementById('homePage'),
-        relawan: document.getElementById('relawanPage'),
-        layanan: document.getElementById('layananPage'),
-        safety: document.getElementById('safetyPage'),
-        types: document.getElementById('disasterTypesPage'),
-        phases: document.getElementById('phasesPage')
-    };
-    const navButtons = document.querySelectorAll('.nav-item');
-    function switchTab(tabId) {
-        Object.keys(pages).forEach(id => {
-            pages[id].classList.remove('active');
-        });
-        pages[tabId].classList.add('active');
-        navButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
-        });
-        if (tabId === 'home' && map) {
-            setTimeout(() => map.invalidateSize(), 200);
-        }
-    }
-    navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const tab = btn.getAttribute('data-tab');
-            switchTab(tab);
-        });
-    });
-    setTimeout(() => map.invalidateSize(), 300);
 </script>
 </body>
 </html>
