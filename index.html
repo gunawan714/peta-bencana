@@ -697,6 +697,14 @@ audio{width:100%;height:34px}
 .modal-box h3{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--ink)}
 .modal-box p{font-size:.82rem;color:var(--ink-mid);margin-bottom:18px;line-height:1.5}
 
+/* ─── PARTISIPASI PAGE ───────────────────────────────────── */
+.partisipasi-detail{display:flex;flex-direction:column;gap:7px}
+.pd-row{
+  display:flex;align-items:center;gap:8px;
+  font-size:.8rem;font-weight:500;color:var(--ink-mid);
+}
+.pd-row i{font-size:.85rem;flex-shrink:0}
+
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
 @media(min-width:480px){
   .layanan-grid{grid-template-columns:repeat(3,1fr)}
@@ -769,15 +777,15 @@ audio{width:100%;height:34px}
   <!-- Quick actions -->
   <div class="section-label"><i class="fas fa-bolt"></i> Akses Cepat</div>
   <div class="quick-row">
-    <button class="quick-btn" onclick="switchTab('layanan')">
+    <button class="quick-btn" onclick="layananWA('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan ke lokasi saya segera.')">
       <div class="qb-icon" style="background:#FFF0F0;color:var(--red)"><i class="fas fa-ambulance"></i></div>
       <span>Minta<br>Ambulan</span>
     </button>
-    <button class="quick-btn" onclick="switchTab('layanan');scrollToLayanan('obat')">
+    <button class="quick-btn" onclick="scrollToLayanan('obat')">
       <div class="qb-icon" style="background:#EDFBF2;color:var(--green-dark)"><i class="fas fa-pills"></i></div>
-      <span>Alat<br>Kesehatan</span>
+      <span>Obat<br>Gratis</span>
     </button>
-    <button class="quick-btn" onclick="switchTab('layanan');scrollToLayanan('singgah')">
+    <button class="quick-btn" onclick="scrollToLayanan('singgah')">
       <div class="qb-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-house-chimney-medical"></i></div>
       <span>Rumah<br>Singgah</span>
     </button>
@@ -831,7 +839,7 @@ audio{width:100%;height:34px}
           <div class="bencana-opt" data-val="Tsunami" onclick="selectBencana(this)"><i class="fas fa-wave-square" style="color:#0B7DAA"></i><span>Tsunami</span></div>
           <div class="bencana-opt" data-val="Tanah Longsor" onclick="selectBencana(this)"><i class="fas fa-hill-rockslide" style="color:#7B5E2A"></i><span>Longsor</span></div>
           <div class="bencana-opt" data-val="Kebakaran" onclick="selectBencana(this)"><i class="fas fa-fire" style="color:#F4A261"></i><span>Kebakaran</span></div>
-          <div class="bencana-opt" data-val="Bencana Sosial" onclick="selectBencana(this)"><i class="fas fa-people-arrows" style="color:var(--blue)"></i><span>Begal/Tawuran</span></div>
+          <div class="bencana-opt" data-val="Perlindungan Anak" onclick="selectBencana(this)"><i class="fas fa-child-reaching" style="color:#7C3AED"></i><span>Lindungi Anak</span></div>
           <div class="bencana-opt" data-val="Medis Darurat" onclick="selectBencana(this)"><i class="fas fa-heart-pulse" style="color:var(--red)"></i><span>Medis Darurat</span></div>
           <div class="bencana-opt" data-val="Lainnya" onclick="selectBencana(this)"><i class="fas fa-circle-question" style="color:var(--ink-soft)"></i><span>Lainnya</span></div>
         </div>
@@ -907,11 +915,8 @@ audio{width:100%;height:34px}
     </div>
   </div><!-- /report-flow -->
 
-</div><!-- /homePage -->
-
-
-<!-- ══════════════ PAGE: LAYANAN ══════════════ -->
-<div id="layananPage" class="page">
+  <!-- ══ LAYANAN (dipindah ke bawah beranda) ══ -->
+  <div class="section-label" style="margin-top:8px"><i class="fas fa-kit-medical"></i> Layanan Medis & Sosial</div>
 
   <div class="card">
     <div class="card-header">
@@ -995,6 +1000,14 @@ audio{width:100%;height:34px}
           </div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
+        <div class="bantuan-item" onclick="layananWA('Perlindungan Anak','Saya melaporkan situasi darurat yang mengancam keselamatan anak. Mohon bantuan dan pendampingan segera.')">
+          <div class="bi-icon" style="background:#F5F0FF;color:#7C3AED"><i class="fas fa-child-reaching"></i></div>
+          <div class="bi-text">
+            <strong>Perlindungan Anak</strong>
+            <span>Lapor ancaman & kekerasan pada anak</span>
+          </div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -1005,7 +1018,131 @@ audio{width:100%;height:34px}
       <i class="fab fa-whatsapp"></i> Hubungi Gubernur FBn
     </a>
   </div>
-</div><!-- /layananPage -->
+
+</div><!-- /homePage -->
+
+
+<!-- ══════════════ PAGE: PARTISIPASI ══════════════ -->
+<div id="layananPage" class="page">
+
+  <!-- Hero partisipasi -->
+  <div style="background:linear-gradient(160deg,#1A9E3F 0%,#0D6B2A 100%);border-radius:var(--radius-lg);padding:24px 20px 22px;margin-bottom:16px;text-align:center;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.05)"></div>
+    <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px"><i class="fas fa-hands-holding-circle"></i>&nbsp; Bersama Kita Bisa</div>
+    <div style="font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:6px">Ikut Berpartisipasi<br>untuk Banten</div>
+    <div style="font-size:.82rem;color:rgba(255,255,255,.75);font-family:'Inter',sans-serif;line-height:1.5">Tidak ada bantuan yang terlalu kecil. Daftarkan diri, kendaraan, atau makanan Anda untuk membantu sesama.</div>
+  </div>
+
+  <!-- Kartu partisipasi: Relawan -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-person-walking-arrow-right"></i></div>
+      <div><h2>Daftar Jadi Relawan</h2><p>Hadir langsung di lapangan</p></div>
+    </div>
+    <div class="card-body">
+      <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">Kami butuh relawan di semua wilayah Banten. Tidak perlu keahlian khusus — cukup niat membantu. Anda akan dibekali pelatihan dasar oleh FBn.</p>
+      <div class="partisipasi-detail" style="margin-bottom:14px">
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Bebas pilih jadwal & wilayah</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Pelatihan P3K & evakuasi dasar</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Terhubung dengan jaringan FBn</div>
+      </div>
+      <button class="btn btn-blue" onclick="partisipasiWA('Relawan','Saya ingin mendaftar sebagai relawan FBn Banten. Saya bersedia membantu di lapangan kapan pun dibutuhkan.')">
+        <i class="fas fa-hand-holding-heart"></i> Daftar Jadi Relawan
+      </button>
+    </div>
+  </div>
+
+  <!-- Kartu partisipasi: Bantuan Makanan -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-bowl-rice"></i></div>
+      <div><h2>Sumbang Bantuan Makanan</h2><p>Nasi bungkus, logistik, & sembako</p></div>
+    </div>
+    <div class="card-body">
+      <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">Setiap porsi makanan berarti bagi pengungsi bencana. Anda bisa menyumbang makanan jadi, bahan pokok, atau berkontribusi memasak di dapur umum.</p>
+      <div class="partisipasi-detail" style="margin-bottom:14px">
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Nasi bungkus untuk pengungsi</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Sembako & bahan pokok</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Relawan dapur umum</div>
+      </div>
+      <button class="btn btn-green" onclick="partisipasiWA('Bantuan Makanan','Saya ingin menyumbangkan bantuan makanan (nasi bungkus/sembako/bahan pokok) untuk korban bencana. Mohon info lebih lanjut cara pengirimannya.')">
+        <i class="fas fa-bowl-rice"></i> Sumbang Makanan
+      </button>
+    </div>
+  </div>
+
+  <!-- Kartu partisipasi: Bantuan Kendaraan -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-truck-medical"></i></div>
+      <div><h2>Sumbang Kendaraan</h2><p>Mobil, motor, & angkutan barang</p></div>
+    </div>
+    <div class="card-body">
+      <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">Kendaraan sangat dibutuhkan untuk evakuasi warga, distribusi logistik, dan mobilisasi relawan ke titik bencana. Daftarkan kendaraan Anda.</p>
+      <div class="partisipasi-detail" style="margin-bottom:14px">
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Mobil penumpang & pickup</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Motor untuk medan sempit</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Truk & angkutan barang</div>
+      </div>
+      <button class="btn btn-red" onclick="partisipasiWA('Bantuan Kendaraan','Saya ingin mendaftarkan kendaraan saya untuk membantu evakuasi atau distribusi logistik bencana. Mohon info lebih lanjut.')">
+        <i class="fas fa-truck-medical"></i> Daftarkan Kendaraan
+      </button>
+    </div>
+  </div>
+
+  <!-- Kartu partisipasi: Donasi & Lainnya -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-plus-circle"></i></div>
+      <div><h2>Bentuk Bantuan Lainnya</h2><p>Keahlian, obat, pakaian & donasi</p></div>
+    </div>
+    <div class="card-body">
+      <div class="bantuan-list">
+        <div class="bantuan-item" onclick="partisipasiWA('Donasi Dana','Saya ingin berdonasi uang untuk operasional relawan FBn dan bantuan korban bencana. Mohon info rekening atau cara transfer.')">
+          <div class="bi-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-money-bill-wave"></i></div>
+          <div class="bi-text">
+            <strong>Donasi Dana</strong>
+            <span>Dukung operasional relawan FBn</span>
+          </div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
+        <div class="bantuan-item" onclick="partisipasiWA('Sumbang Pakaian & Selimut','Saya ingin menyumbangkan pakaian layak pakai atau selimut untuk pengungsi bencana. Mohon info titik serah.')">
+          <div class="bi-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-shirt"></i></div>
+          <div class="bi-text">
+            <strong>Pakaian & Selimut</strong>
+            <span>Pakaian layak pakai untuk pengungsi</span>
+          </div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
+        <div class="bantuan-item" onclick="partisipasiWA('Sumbang Obat & Alkes','Saya ingin menyumbangkan obat-obatan atau alat kesehatan untuk posko medis bencana. Mohon info lebih lanjut.')">
+          <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-kit-medical"></i></div>
+          <div class="bi-text">
+            <strong>Obat & Alat Kesehatan</strong>
+            <span>Untuk posko medis & pengungsi</span>
+          </div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
+        <div class="bantuan-item" onclick="partisipasiWA('Relawan Keahlian Khusus','Saya memiliki keahlian khusus (medis/psikolog/SAR/IT/dll) yang ingin saya dedikasikan untuk membantu korban bencana.')">
+          <div class="bi-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-user-doctor"></i></div>
+          <div class="bi-text">
+            <strong>Keahlian Khusus</strong>
+            <span>Medis, psikolog, SAR, IT, dll</span>
+          </div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--blue),#07285F);border-radius:var(--radius-md);padding:16px 18px;text-align:center;margin-bottom:16px">
+    <p style="color:rgba(255,255,255,.85);font-size:.82rem;font-weight:600;margin-bottom:4px">🌟 Setiap kontribusi berarti</p>
+    <p style="color:rgba(255,255,255,.65);font-size:.75rem;margin-bottom:12px;font-family:'Inter',sans-serif">Koordinator FBn akan menghubungi Anda setelah pendaftaran</p>
+    <a href="https://wa.me/628170050090?text=Halo+Kang+Lulu,+saya+ingin+berpartisipasi+membantu+FBn+Banten" target="_blank" class="btn btn-wa" style="display:inline-flex;width:auto;padding:10px 24px">
+      <i class="fab fa-whatsapp"></i> Chat Langsung dengan Gubernur FBn
+    </a>
+  </div>
+
+</div><!-- /layananPage (partisipasi) -->
 
 
 <!-- ══════════════ PAGE: RELAWAN ══════════════ -->
@@ -1360,7 +1497,7 @@ audio{width:100%;height:34px}
 <!-- BOTTOM NAVIGATION -->
 <nav class="bottom-nav">
   <button class="nav-item active" data-tab="home"><i class="fas fa-home"></i><span>Beranda</span></button>
-  <button class="nav-item" data-tab="layanan"><i class="fas fa-kit-medical"></i><span>Layanan</span></button>
+  <button class="nav-item" data-tab="layanan"><i class="fas fa-hands-holding-circle"></i><span>Partisipasi</span></button>
   <div class="nav-panic-wrap">
     <button class="nav-panic-btn" onclick="startReport();switchTab('home')" aria-label="Lapor Darurat">
       <i class="fas fa-exclamation"></i>
@@ -1399,7 +1536,7 @@ const CITY_COORDS = [
 ];
 
 const GUBERNUR_WA = '628170050090';
-const POSKO_WA    = '628170050090';
+const POSKO_WA    = '6285712345600';
 
 /* ═══════════════════════════════════════════════
    STATE
@@ -1696,6 +1833,17 @@ ${pesan}
 📍 Lokasi saya: ${mapsLink}
 📞 Silakan hubungi saya segera.
 
+_Dikirim via Aplikasi Peta Bencana Banten_`;
+  window.open(`https://wa.me/${GUBERNUR_WA}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function partisipasiWA(jenis, pesan) {
+  const msg =
+`🌟 *PARTISIPASI: ${jenis.toUpperCase()}*
+
+${pesan}
+
+📞 Mohon koordinasi lebih lanjut.
 _Dikirim via Aplikasi Peta Bencana Banten_`;
   window.open(`https://wa.me/${GUBERNUR_WA}?text=${encodeURIComponent(msg)}`, '_blank');
 }
