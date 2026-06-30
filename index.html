@@ -7,6 +7,10 @@
 <meta name="theme-color" content="#0B3D91">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>FBn Siaga Bencana Banten</title>
+
+<link rel="icon" type="image/png" href="https://placehold.co/64x64/0B3D91/FFF?text=FBn">
+<link rel="apple-touch-icon" href="https://placehold.co/192x192/0B3D91/FFF?text=FBn">
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -33,13 +37,15 @@ h1,h2,h3,h4,h5,button,.poppins{font-family:'Poppins',sans-serif}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--blue-mid);border-radius:4px}
+img {max-width: 100%; display: block;} /* Image reset */
 
 /* ═══ OFFLINE BANNER ════════════════════════════════════ */
 #offlineBanner{display:none;background:var(--red);color:#fff;text-align:center;font-size:.78rem;font-weight:600;padding:7px;letter-spacing:.03em}
 
 /* ═══ HEADER ════════════════════════════════════════════ */
 .app-header{position:sticky;top:0;z-index:900;background:var(--blue);color:#fff;padding:12px 18px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(11,61,145,.25)}
-.header-logo{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:2px solid rgba(255,255,255,.3)}
+.header-logo{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,.3);overflow:hidden;}
+.header-logo img {width:100%;height:100%;object-fit:cover;}
 .header-text{flex:1}
 .header-text h1{font-size:1rem;font-weight:800;line-height:1.1}
 .header-text p{font-size:.68rem;opacity:.75;font-family:'Inter',sans-serif;font-weight:400;margin-top:2px}
@@ -65,12 +71,19 @@ a{color:inherit;text-decoration:none}
 .section-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;margin-top:6px;display:flex;align-items:center;gap:6px}
 .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* ═══ HERO PANIC ════════════════════════════════════════ */
-.hero-panel{background:linear-gradient(160deg,var(--blue) 0%,#07285F 100%);border-radius:var(--radius-lg);padding:26px 20px 24px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+/* ═══ HERO PANELS (UPDATED DENGAN BANNERS) ════════════════ */
+.hero-panel{
+  /* Ganti URL gambar di bawah ini dengan link gambar dari repository Anda nantinya */
+  background-image: linear-gradient(160deg, rgba(11, 61, 145, 0.95) 0%, rgba(7, 40, 95, 0.95) 100%), url('https://images.unsplash.com/photo-1598914652230-2cb039b92209?q=80&w=600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  border-radius:var(--radius-lg);padding:26px 20px 24px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden;
+  box-shadow: var(--shadow-md);
+}
 .hero-panel::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
-.hero-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
-.hero-title{font-size:1.3rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px}
-.hero-sub{font-size:.82rem;color:rgba(255,255,255,.7);font-family:'Inter',sans-serif;margin-bottom:22px;line-height:1.5}
+.hero-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:8px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);}
+.hero-title{font-size:1.3rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);}
+.hero-sub{font-size:.82rem;color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;margin-bottom:22px;line-height:1.5; text-shadow: 0 1px 2px rgba(0,0,0,0.3);}
 .panic-ring-wrap{display:inline-flex;align-items:center;justify-content:center;position:relative;margin-bottom:10px}
 .panic-ring{position:absolute;width:88px;height:88px;border-radius:50%;border:3px solid var(--red);animation:heartbeat 1.6s ease-in-out infinite}
 .panic-ring:nth-child(2){animation-delay:.4s;opacity:.6}
@@ -79,10 +92,10 @@ a{color:inherit;text-decoration:none}
 .btn-panic{position:relative;z-index:2;width:74px;height:74px;border-radius:50%;background:var(--red);color:#fff;font-family:'Poppins',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:4px solid rgba(255,255,255,.3);box-shadow:0 8px 24px rgba(214,40,40,.5);transition:transform .15s,box-shadow .15s;line-height:1.1}
 .btn-panic:active{transform:scale(.94)}
 .btn-panic i{font-size:1.3rem;margin-bottom:1px}
-.panic-label{font-size:.75rem;font-weight:600;color:rgba(255,255,255,.85);font-family:'Inter',sans-serif}
+.panic-label{font-size:.75rem;font-weight:600;color:rgba(255,255,255,.9);font-family:'Inter',sans-serif; text-shadow: 0 1px 2px rgba(0,0,0,0.4);}
 
 /* verified badge in hero */
-.hero-verified-badge{display:none;background:rgba(45,198,83,.2);border:1px solid rgba(45,198,83,.4);border-radius:50px;padding:5px 14px;font-size:.72rem;font-weight:600;color:#A7F3C0;margin-bottom:14px;align-items:center;gap:6px}
+.hero-verified-badge{display:none;background:rgba(45,198,83,.2);border:1px solid rgba(45,198,83,.4);border-radius:50px;padding:5px 14px;font-size:.72rem;font-weight:600;color:#A7F3C0;margin-bottom:14px;align-items:center;gap:6px; backdrop-filter: blur(4px);}
 .hero-verified-badge.show{display:inline-flex}
 
 /* ═══ QUICK ROW ═════════════════════════════════════════ */
@@ -216,8 +229,9 @@ audio{width:100%;height:34px}
 .bi-arrow{margin-left:auto;color:var(--ink-soft);font-size:.85rem;flex-shrink:0}
 
 /* ═══ RELAWAN ════════════════════════════════════════════ */
-.gov-card{background:linear-gradient(135deg,var(--blue),#07285F);border-radius:var(--radius-lg);padding:20px 18px;color:#fff;display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.gov-avatar{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.gov-card{background:linear-gradient(135deg,var(--blue),#07285F);border-radius:var(--radius-lg);padding:20px 18px;color:#fff;display:flex;align-items:center;gap:14px;margin-bottom:16px; box-shadow: var(--shadow-md);}
+.gov-avatar{width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0; overflow: hidden;}
+.gov-avatar img {width: 100%; height: 100%; object-fit: cover;}
 .gov-info strong{display:block;font-size:.95rem;font-weight:800}
 .gov-info span{font-size:.72rem;opacity:.75;display:block;margin-bottom:8px}
 .btn-gov-call{background:var(--green);color:#fff;font-size:.75rem;font-weight:700;padding:8px 14px;border-radius:50px;display:inline-flex;align-items:center;gap:6px}
@@ -255,15 +269,33 @@ audio{width:100%;height:34px}
 .tl-item h5{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:3px}
 .tl-item p{font-size:.78rem;color:var(--ink-mid)}
 
-/* ═══ PROFIL PAGE ════════════════════════════════════════ */
-.profil-hero{background:linear-gradient(140deg,var(--blue) 0%,#07285F 100%);border-radius:var(--radius-lg);padding:28px 20px;text-align:center;color:#fff;margin-bottom:16px}
-.profil-logo{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 12px}
-.profil-hero h2{font-size:1.2rem;font-weight:800;margin-bottom:4px}
-.profil-hero p{font-size:.78rem;opacity:.75;font-family:'Inter',sans-serif}
+/* ═══ PROFIL PAGE (UPDATED DENGAN BANNER) ════════════════ */
+.profil-hero{
+  /* Ganti URL gambar profil hero */
+  background-image: linear-gradient(140deg, rgba(11, 61, 145, 0.95) 0%, rgba(7, 40, 95, 0.95) 100%), url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  border-radius:var(--radius-lg);padding:28px 20px;text-align:center;color:#fff;margin-bottom:16px;
+  box-shadow: var(--shadow-md);
+}
+.profil-logo{width:72px;height:72px;border-radius:50%;background:#fff;border:3px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 12px; overflow:hidden;}
+.profil-logo img {width:100%; height:100%; object-fit:cover;}
+.profil-hero h2{font-size:1.2rem;font-weight:800;margin-bottom:4px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);}
+.profil-hero p{font-size:.78rem;opacity:.85;font-family:'Inter',sans-serif; text-shadow: 0 1px 2px rgba(0,0,0,0.4);}
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .stat-box{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:14px 10px;text-align:center;box-shadow:var(--shadow-sm)}
 .stat-box strong{display:block;font-size:1.4rem;font-weight:900;color:var(--blue)}
 .stat-box span{font-size:.65rem;color:var(--ink-soft);font-weight:500}
+
+/* ═══ PARTISIPASI PAGE HERO (UPDATED DENGAN BANNER) ══════ */
+.partisipasi-hero {
+  /* Ganti URL gambar partisipasi hero */
+  background-image: linear-gradient(160deg, rgba(26, 158, 63, 0.95) 0%, rgba(13, 107, 42, 0.95) 100%), url('https://images.unsplash.com/photo-1593113565214-8d46f4d8e578?q=80&w=600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  border-radius:var(--radius-lg);padding:24px 20px 22px;margin-bottom:16px;text-align:center;color:#fff;position:relative;overflow:hidden;
+  box-shadow: var(--shadow-md);
+}
 
 /* ═══ PARTISIPASI PAGE ═══════════════════════════════════ */
 .partisipasi-detail{display:flex;flex-direction:column;gap:7px}
@@ -299,12 +331,12 @@ audio{width:100%;height:34px}
 </style>
 </head>
 <body>
-<!-- OFFLINE BANNER -->
-<div id="offlineBanner"><i class="fas fa-wifi-slash"></i>&nbsp; Tidak ada koneksi — Mode Terbatas Aktif</div>
+<div id="offlineBanner"><i class="fas fa-wifi-slash"></i>  Tidak ada koneksi — Mode Terbatas Aktif</div>
 
-<!-- HEADER -->
 <header class="app-header">
-  <div class="header-logo"><i class="fas fa-map-marked-alt"></i></div>
+  <div class="header-logo">
+    <img src="https://placehold.co/100x100/0B3D91/FFFFFF?text=FBn" alt="Logo FBn">
+  </div>
   <div class="header-text">
     <h1>FBn Siaga Bencana</h1>
     <p>Fesbukbantennews · Peta Bencana Banten</p>
@@ -312,10 +344,8 @@ audio{width:100%;height:34px}
   <div class="header-status"><div class="pulse-dot"></div>Siaga 24 Jam</div>
 </header>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- MODAL KONFIRMASI -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="modal-handle"></div>
@@ -328,14 +358,11 @@ audio{width:100%;height:34px}
   </div>
 </div>
 
-<!-- MAIN -->
 <main class="main">
-<!-- ══════════════ PAGE: BERANDA ══════════════ -->
 <div id="homePage" class="page active">
 
-  <!-- Hero -->
   <div class="hero-panel">
-    <div class="hero-eyebrow"><i class="fas fa-shield-alt"></i>&nbsp; Bantu Cepat, Tepat &amp; Gratis</div>
+    <div class="hero-eyebrow"><i class="fas fa-shield-alt"></i>  Bantu Cepat, Tepat & Gratis</div>
     <div class="hero-title">Ada Bencana?<br>Kami Siap Bantu.</div>
     <div id="heroVerifiedBadge" class="hero-verified-badge">
       <i class="fas fa-circle-check"></i> <span id="heroVerifiedName">Terverifikasi</span>
@@ -350,7 +377,6 @@ audio{width:100%;height:34px}
     <div class="panic-label">Ketuk untuk lapor kejadian</div>
   </div>
 
-  <!-- Quick actions -->
   <div class="section-label"><i class="fas fa-bolt"></i> Akses Cepat</div>
   <div class="quick-row">
     <button class="quick-btn" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan ke lokasi saya segera.')">
@@ -367,7 +393,6 @@ audio{width:100%;height:34px}
     </button>
   </div>
 
-  <!-- Hotline -->
   <div class="hotline-strip">
     <div class="hs-icon"><i class="fas fa-phone-alt"></i></div>
     <div class="hs-text">
@@ -379,11 +404,9 @@ audio{width:100%;height:34px}
     </a>
   </div>
 
-  <!-- REPORT FLOW -->
   <div class="report-flow" id="reportFlow">
     <div class="section-label"><i class="fas fa-file-medical"></i> Form Laporan Darurat</div>
 
-    <!-- 4-STAGE PROGRESS BAR -->
     <div class="report-progress">
       <div class="rp-stages" id="rpStages">
         <div class="rp-stage active" id="rpS0">
@@ -406,7 +429,6 @@ audio{width:100%;height:34px}
       <div class="rp-bar-wrap"><div class="rp-bar-fill" id="rpBarFill" style="width:12%"></div></div>
     </div>
 
-    <!-- STEP 0: VERIFIKASI NOMOR HP -->
     <div class="card step-panel active" id="stepPanel0">
       <div class="card-header">
         <div class="card-header-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-mobile-screen-button"></i></div>
@@ -417,10 +439,9 @@ audio{width:100%;height:34px}
       </div>
       <div class="card-body">
 
-        <!-- Phase A: Input nomor -->
         <div id="otpPhaseA">
           <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">
-            <i class="fas fa-shield-halved" style="color:var(--blue)"></i>&nbsp;
+            <i class="fas fa-shield-halved" style="color:var(--blue)"></i> 
             Masukkan nomor HP aktif Anda. Kode OTP akan dikirim via <strong>WhatsApp</strong>. Data Anda aman dan hanya digunakan untuk validasi laporan.
           </p>
 
@@ -446,7 +467,6 @@ audio{width:100%;height:34px}
           </button>
         </div>
 
-        <!-- Phase B: Input OTP -->
         <div id="otpPhaseB" style="display:none">
           <div class="otp-sent-info show" id="otpSentInfo">
             <i class="fas fa-circle-check"></i>
@@ -457,14 +477,12 @@ audio{width:100%;height:34px}
             Masukkan 6 digit kode yang Anda terima:
           </p>
 
-          <!-- Attempt dots -->
           <div class="otp-attempt-bar">
             <div class="otp-attempt-dot" id="ad0"></div>
             <div class="otp-attempt-dot" id="ad1"></div>
             <div class="otp-attempt-dot" id="ad2"></div>
           </div>
 
-          <!-- 6 OTP Boxes -->
           <div class="otp-boxes">
             <input class="otp-box" type="tel" inputmode="numeric" maxlength="1" id="ob0"/>
             <input class="otp-box" type="tel" inputmode="numeric" maxlength="1" id="ob1"/>
@@ -474,7 +492,6 @@ audio{width:100%;height:34px}
             <input class="otp-box" type="tel" inputmode="numeric" maxlength="1" id="ob5"/>
           </div>
 
-          <!-- Limit exceeded -->
           <div class="otp-limit-exceeded" id="otpLimitExceeded">
             <p><i class="fas fa-triangle-exclamation"></i> Terlalu banyak percobaan. Silakan hubungi relawan langsung.</p>
             <a href="tel:+628170050090" class="btn btn-amber" style="display:inline-flex;width:auto;padding:10px 20px">
@@ -482,9 +499,8 @@ audio{width:100%;height:34px}
             </a>
           </div>
 
-          <!-- Resend timer -->
           <div class="otp-resend">
-            Belum terima kode? &nbsp;
+            Belum terima kode?  
             <span id="resendTimer">Kirim ulang dalam 60s</span>
             <button id="btnResend" onclick="resendOTP()">Kirim ulang</button>
           </div>
@@ -500,7 +516,6 @@ audio{width:100%;height:34px}
       </div>
     </div>
 
-    <!-- STEP 1: JENIS BENCANA -->
     <div class="card step-panel" id="stepPanel1">
       <div class="card-header">
         <div class="card-header-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-triangle-exclamation"></i></div>
@@ -525,7 +540,6 @@ audio{width:100%;height:34px}
       </div>
     </div>
 
-    <!-- STEP 2: LOKASI -->
     <div class="card step-panel" id="stepPanel2">
       <div class="card-header">
         <div class="card-header-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-location-dot"></i></div>
@@ -545,11 +559,10 @@ audio{width:100%;height:34px}
       </div>
     </div>
 
-    <!-- STEP 3: KRONOLOGI & KIRIM -->
     <div class="card step-panel" id="stepPanel3">
       <div class="card-header">
         <div class="card-header-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-comment-medical"></i></div>
-        <div><h2>Kronologi &amp; Bukti</h2><p>Ceritakan (opsional rekam suara)</p></div>
+        <div><h2>Kronologi & Bukti</h2><p>Ceritakan (opsional rekam suara)</p></div>
       </div>
       <div class="card-body">
         <label class="form-label">Ceritakan dengan kata-kata sendiri:</label>
@@ -574,14 +587,11 @@ audio{width:100%;height:34px}
         </p>
       </div>
     </div>
-  </div><!-- /report-flow -->
-
-  <!-- JENIS BENCANA GRID (beranda) -->
-  <div class="section-label" style="margin-top:8px"><i class="fas fa-triangle-exclamation"></i> Jenis Kejadian Bencana</div>
+  </div><div class="section-label" style="margin-top:8px"><i class="fas fa-triangle-exclamation"></i> Jenis Kejadian Bencana</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-triangle-exclamation"></i></div>
-      <div><h2>Kenali &amp; Lapor Bencana</h2><p>Ketuk untuk mulai laporan jenis ini</p></div>
+      <div><h2>Kenali & Lapor Bencana</h2><p>Ketuk untuk mulai laporan jenis ini</p></div>
     </div>
     <div class="card-body" style="padding-top:12px">
       <div class="bencana-home-grid">
@@ -613,28 +623,27 @@ audio{width:100%;height:34px}
     </div>
   </div>
 
-  <!-- LAYANAN MEDIS & SOSIAL -->
-  <div class="section-label" style="margin-top:4px"><i class="fas fa-hands-holding-heart"></i> Layanan Medis &amp; Sosial</div>
+  <div class="section-label" style="margin-top:4px"><i class="fas fa-hands-holding-heart"></i> Layanan Medis & Sosial</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-hands-holding-heart"></i></div>
-      <div><h2>Bantuan Sosial &amp; Medis</h2><p>Gratis untuk warga miskin &amp; duafa</p></div>
+      <div><h2>Bantuan Sosial & Medis</h2><p>Gratis untuk warga miskin & duafa</p></div>
     </div>
     <div class="card-body">
       <div class="bantuan-list">
         <div class="bantuan-item" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan segera.')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-ambulance"></i></div>
-          <div class="bi-text"><strong>Ambulan</strong><span>Evakuasi &amp; rujukan rumah sakit</span></div>
+          <div class="bi-text"><strong>Ambulan</strong><span>Evakuasi & rujukan rumah sakit</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" id="alkes" onclick="requestLayanan('Alat Kesehatan (Alkes)','Saya memerlukan alat kesehatan seperti tabung oksigen, nebulizer, kursi roda atau alkes lainnya. Mohon bantuan.')">
           <div class="bi-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-stethoscope"></i></div>
-          <div class="bi-text"><strong>Alat Kesehatan (Alkes)</strong><span>Oksigen, nebulizer, kursi roda &amp; lainnya</span></div>
+          <div class="bi-text"><strong>Alat Kesehatan (Alkes)</strong><span>Oksigen, nebulizer, kursi roda & lainnya</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" onclick="requestLayanan('Donor Darah','Saya memerlukan pendonor darah untuk pasien. Mohon koordinasi PMI atau relawan FBn.')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-droplet"></i></div>
-          <div class="bi-text"><strong>Donor Darah</strong><span>Koordinasi PMI &amp; relawan</span></div>
+          <div class="bi-text"><strong>Donor Darah</strong><span>Koordinasi PMI & relawan</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" id="singgah" onclick="requestLayanan('Rumah Singgah','Saya memerlukan tempat tinggal sementara untuk keluarga/pasien miskin yang berobat jauh.')">
@@ -659,12 +668,12 @@ audio{width:100%;height:34px}
         </div>
         <div class="bantuan-item" onclick="requestLayanan('Evakuasi Difabel & Lansia','Saya memerlukan bantuan evakuasi khusus untuk lansia, difabel, atau ibu hamil.')">
           <div class="bi-icon" style="background:#FFF5F7;color:#9B2C2C"><i class="fas fa-wheelchair-move"></i></div>
-          <div class="bi-text"><strong>Evakuasi Difabel &amp; Lansia</strong><span>Penanganan khusus kelompok rentan</span></div>
+          <div class="bi-text"><strong>Evakuasi Difabel & Lansia</strong><span>Penanganan khusus kelompok rentan</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" onclick="requestLayanan('Perlindungan Anak','Saya melaporkan situasi darurat yang mengancam keselamatan anak. Mohon bantuan segera.')">
           <div class="bi-icon" style="background:#F5F0FF;color:#7C3AED"><i class="fas fa-child-reaching"></i></div>
-          <div class="bi-text"><strong>Perlindungan Anak</strong><span>Lapor ancaman &amp; kekerasan pada anak</span></div>
+          <div class="bi-text"><strong>Perlindungan Anak</strong><span>Lapor ancaman & kekerasan pada anak</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
       </div>
@@ -677,15 +686,12 @@ audio{width:100%;height:34px}
       <i class="fab fa-whatsapp"></i> Hubungi Gubernur FBn
     </a>
   </div>
-</div><!-- /homePage -->
-
-<!-- ══════════════ PAGE: PARTISIPASI ══════════════ -->
-<div id="layananPage" class="page">
-  <div style="background:linear-gradient(160deg,#1A9E3F 0%,#0D6B2A 100%);border-radius:var(--radius-lg);padding:24px 20px 22px;margin-bottom:16px;text-align:center;color:#fff;position:relative;overflow:hidden">
+</div><div id="layananPage" class="page">
+  <div class="partisipasi-hero">
     <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.05)"></div>
-    <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px"><i class="fas fa-hands-holding-circle"></i>&nbsp; Bersama Kita Bisa</div>
-    <div style="font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:6px">Ikut Berpartisipasi<br>untuk Banten</div>
-    <div style="font-size:.82rem;color:rgba(255,255,255,.75);font-family:'Inter',sans-serif;line-height:1.5">Tidak ada bantuan yang terlalu kecil. Daftarkan diri, kendaraan, atau makanan Anda.</div>
+    <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:8px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><i class="fas fa-hands-holding-circle"></i>  Bersama Kita Bisa</div>
+    <div style="font-size:1.3rem;font-weight:800;line-height:1.25;margin-bottom:6px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Ikut Berpartisipasi<br>untuk Banten</div>
+    <div style="font-size:.82rem;color:rgba(255,255,255,.9);font-family:'Inter',sans-serif;line-height:1.5; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">Tidak ada bantuan yang terlalu kecil. Daftarkan diri, kendaraan, atau makanan Anda.</div>
   </div>
 
   <div class="card">
@@ -696,8 +702,8 @@ audio{width:100%;height:34px}
     <div class="card-body">
       <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">Kami butuh relawan di semua wilayah Banten. Tidak perlu keahlian khusus — cukup niat membantu.</p>
       <div class="partisipasi-detail" style="margin-bottom:14px">
-        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Bebas pilih jadwal &amp; wilayah</div>
-        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Pelatihan P3K &amp; evakuasi dasar</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Bebas pilih jadwal & wilayah</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Pelatihan P3K & evakuasi dasar</div>
         <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Terhubung dengan jaringan FBn</div>
       </div>
       <button class="btn btn-blue" onclick="partisipasiWA('Relawan','Saya ingin mendaftar sebagai relawan FBn Banten dan bersedia membantu di lapangan.')">
@@ -709,12 +715,12 @@ audio{width:100%;height:34px}
   <div class="card">
     <div class="card-header">
       <div class="card-header-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-bowl-rice"></i></div>
-      <div><h2>Sumbang Bantuan Makanan</h2><p>Nasi bungkus, logistik, &amp; sembako</p></div>
+      <div><h2>Sumbang Bantuan Makanan</h2><p>Nasi bungkus, logistik, & sembako</p></div>
     </div>
     <div class="card-body">
       <div class="partisipasi-detail" style="margin-bottom:14px">
         <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Nasi bungkus untuk pengungsi</div>
-        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Sembako &amp; bahan pokok</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Sembako & bahan pokok</div>
         <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Relawan dapur umum</div>
       </div>
       <button class="btn btn-green" onclick="partisipasiWA('Bantuan Makanan','Saya ingin menyumbangkan bantuan makanan untuk korban bencana. Mohon info lebih lanjut.')">
@@ -726,13 +732,13 @@ audio{width:100%;height:34px}
   <div class="card">
     <div class="card-header">
       <div class="card-header-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-truck-medical"></i></div>
-      <div><h2>Sumbang Kendaraan</h2><p>Mobil, motor, &amp; angkutan barang</p></div>
+      <div><h2>Sumbang Kendaraan</h2><p>Mobil, motor, & angkutan barang</p></div>
     </div>
     <div class="card-body">
       <div class="partisipasi-detail" style="margin-bottom:14px">
-        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Mobil penumpang &amp; pickup</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Mobil penumpang & pickup</div>
         <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Motor untuk medan sempit</div>
-        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Truk &amp; angkutan barang</div>
+        <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Truk & angkutan barang</div>
       </div>
       <button class="btn btn-red" onclick="partisipasiWA('Bantuan Kendaraan','Saya ingin mendaftarkan kendaraan saya untuk membantu evakuasi atau distribusi logistik bencana.')">
         <i class="fas fa-truck-medical"></i> Daftarkan Kendaraan
@@ -743,7 +749,7 @@ audio{width:100%;height:34px}
   <div class="card">
     <div class="card-header">
       <div class="card-header-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-plus-circle"></i></div>
-      <div><h2>Bentuk Bantuan Lainnya</h2><p>Keahlian, obat, pakaian &amp; donasi</p></div>
+      <div><h2>Bentuk Bantuan Lainnya</h2><p>Keahlian, obat, pakaian & donasi</p></div>
     </div>
     <div class="card-body">
       <div class="bantuan-list">
@@ -754,12 +760,12 @@ audio{width:100%;height:34px}
         </div>
         <div class="bantuan-item" onclick="partisipasiWA('Sumbang Pakaian','Saya ingin menyumbangkan pakaian layak pakai atau selimut untuk pengungsi bencana.')">
           <div class="bi-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-shirt"></i></div>
-          <div class="bi-text"><strong>Pakaian &amp; Selimut</strong><span>Pakaian layak pakai untuk pengungsi</span></div>
+          <div class="bi-text"><strong>Pakaian & Selimut</strong><span>Pakaian layak pakai untuk pengungsi</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" onclick="partisipasiWA('Sumbang Alkes','Saya ingin menyumbangkan alat kesehatan untuk posko medis bencana.')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-kit-medical"></i></div>
-          <div class="bi-text"><strong>Alat Kesehatan</strong><span>Untuk posko medis &amp; pengungsi</span></div>
+          <div class="bi-text"><strong>Alat Kesehatan</strong><span>Untuk posko medis & pengungsi</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" onclick="partisipasiWA('Keahlian Khusus','Saya memiliki keahlian khusus (medis/psikolog/SAR/IT) yang ingin saya dedikasikan untuk korban bencana.')">
@@ -770,12 +776,11 @@ audio{width:100%;height:34px}
       </div>
     </div>
   </div>
-</div><!-- /layananPage -->
-
-<!-- ══════════════ PAGE: RELAWAN ══════════════ -->
-<div id="relawanPage" class="page">
+</div><div id="relawanPage" class="page">
   <div class="gov-card">
-    <div class="gov-avatar"><i class="fas fa-crown"></i></div>
+    <div class="gov-avatar">
+      <img src="https://ui-avatars.com/api/?name=Kang+Lulu&background=2DC653&color=fff&size=100" alt="Kang Lulu">
+    </div>
     <div class="gov-info">
       <strong>Kang Lulu (Gubernur FBn)</strong>
       <span>Koordinator Siaga Bencana 24 Jam · Provinsi Banten</span>
@@ -798,10 +803,7 @@ audio{width:100%;height:34px}
       </a>
     </div>
   </div>
-</div><!-- /relawanPage -->
-
-<!-- ══════════════ PAGE: INFORMASI ══════════════ -->
-<div id="informasiPage" class="page">
+</div><div id="informasiPage" class="page">
   <div class="info-tabs" id="infoTabs">
     <button class="info-tab-btn active" data-panel="infoKeselamatan">🛡️ Keselamatan</button>
     <button class="info-tab-btn" data-panel="infoJenis">🌍 Jenis Bencana</button>
@@ -810,17 +812,17 @@ audio{width:100%;height:34px}
   </div>
 
   <div class="info-panel active" id="infoKeselamatan">
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-house-crack"></i></div><h4>Gempa Bumi</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>Drop</strong> – berlutut, lindungi kepala &amp; leher</li><li><strong>Cover</strong> – berlindung di bawah meja kokoh</li><li><strong>Hold On</strong> – pegang erat hingga guncangan berhenti</li><li>Jauhi jendela kaca dan dinding retak</li><li>Setelah aman, evakuasi ke lapangan terbuka</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-house-crack"></i></div><h4>Gempa Bumi</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>Drop</strong> – berlutut, lindungi kepala & leher</li><li><strong>Cover</strong> – berlindung di bawah meja kokoh</li><li><strong>Hold On</strong> – pegang erat hingga guncangan berhenti</li><li>Jauhi jendela kaca dan dinding retak</li><li>Setelah aman, evakuasi ke lapangan terbuka</li></ul></div></div>
     <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-water"></i></div><h4>Banjir Bandang</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Segera naik ke tempat lebih tinggi</li><li>Hindari berjalan melewati genangan</li><li>Matikan listrik dari panel utama bila aman</li><li>Bawa dokumen penting ke tempat aman</li><li>Hubungi relawan FBn untuk evakuasi</li></ul></div></div>
     <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:#E0F7FA;color:#00838F"><i class="fas fa-wave-square"></i></div><h4>Tsunami</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Gempa kuat di tepi pantai → segera lari ke dataran tinggi</li><li>Waspadai air laut yang tiba-tiba surut drastis</li><li>Jangan tunggu perintah — evakuasi mandiri sekarang</li><li>Ikuti jalur evakuasi (rambu biru)</li></ul></div></div>
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-fire"></i></div><h4>Kebakaran</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Tutup mulut &amp; hidung dengan kain basah</li><li>Merangkak rendah — udara lebih bersih di bawah</li><li>Periksa gagang pintu sebelum membuka</li><li>Hubungi Damkar: <strong>113</strong> atau Relawan FBn</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-fire"></i></div><h4>Kebakaran</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Tutup mulut & hidung dengan kain basah</li><li>Merangkak rendah — udara lebih bersih di bawah</li><li>Periksa gagang pintu sebelum membuka</li><li>Hubungi Damkar: <strong>113</strong> atau Relawan FBn</li></ul></div></div>
     <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-heart-pulse"></i></div><h4>Pertolongan Pertama Dasar</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>Pingsan:</strong> baringkan, angkat kaki, jaga napas</li><li><strong>Luka parah:</strong> tekan dengan kain bersih</li><li><strong>Patah tulang:</strong> jangan pindahkan paksa, imobilisasi</li><li>Ambulan: <strong>118 / 119</strong></li></ul></div></div>
   </div>
 
   <div class="info-panel" id="infoJenis">
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-mountain-sun"></i></div><h4>Bencana Alam di Banten</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🏔️ <strong>Gunung Anak Krakatau</strong> – aktivitas vulkanik berkelanjutan</li><li>🌊 <strong>Tsunami</strong> – potensi dari Selat Sunda</li><li>🌧️ <strong>Banjir &amp; Longsor</strong> – Lebak &amp; Pandeglang zona rawan</li><li>💨 <strong>Angin Puting Beliung</strong> – musim pancaroba</li></ul></div></div>
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-industry"></i></div><h4>Bencana Non-Alam</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🔥 Kebakaran hutan &amp; lahan</li><li>🏭 Kecelakaan industri (Cilegon: kawasan petrokimia)</li><li>🦟 Wabah penyakit (DBD, diare, leptospirosis)</li></ul></div></div>
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--purple-light);color:var(--purple)"><i class="fas fa-child-reaching"></i></div><h4>Perlindungan Anak dalam Bencana</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>👶 Anak paling rentan dalam situasi darurat</li><li>Risiko terpisah dari keluarga saat evakuasi</li><li>Risiko kekerasan &amp; eksploitasi meningkat pasca bencana</li><li>Hubungi FBn atau Komnas PA Banten segera bila ada kasus</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-mountain-sun"></i></div><h4>Bencana Alam di Banten</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🏔️ <strong>Gunung Anak Krakatau</strong> – aktivitas vulkanik berkelanjutan</li><li>🌊 <strong>Tsunami</strong> – potensi dari Selat Sunda</li><li>🌧️ <strong>Banjir & Longsor</strong> – Lebak & Pandeglang zona rawan</li><li>💨 <strong>Angin Puting Beliung</strong> – musim pancaroba</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-industry"></i></div><h4>Bencana Non-Alam</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🔥 Kebakaran hutan & lahan</li><li>🏭 Kecelakaan industri (Cilegon: kawasan petrokimia)</li><li>🦟 Wabah penyakit (DBD, diare, leptospirosis)</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--purple-light);color:var(--purple)"><i class="fas fa-child-reaching"></i></div><h4>Perlindungan Anak dalam Bencana</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>👶 Anak paling rentan dalam situasi darurat</li><li>Risiko terpisah dari keluarga saat evakuasi</li><li>Risiko kekerasan & eksploitasi meningkat pasca bencana</li><li>Hubungi FBn atau Komnas PA Banten segera bila ada kasus</li></ul></div></div>
   </div>
 
   <div class="info-panel" id="infoSiklus">
@@ -828,10 +830,10 @@ audio{width:100%;height:34px}
       <div class="card-header"><div class="card-header-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-rotate"></i></div><div><h2>Siklus Penanggulangan Bencana</h2><p>Tahapan standar BNPB</p></div></div>
       <div class="card-body">
         <div class="timeline">
-          <div class="tl-item done"><div class="tl-dot"></div><h5>📌 Pra-Bencana</h5><p>Pemetaan risiko, pelatihan komunitas, simulasi evakuasi, pembuatan jalur &amp; posko siaga.</p></div>
-          <div class="tl-item warn"><div class="tl-dot"></div><h5>🚨 Tanggap Darurat</h5><p>Pencarian &amp; penyelamatan (SAR), evakuasi massal, dapur umum, posko kesehatan lapangan.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><h5>🔄 Pemulihan Awal</h5><p>Perbaikan darurat infrastruktur, distribusi logistik, pendataan korban &amp; kerusakan.</p></div>
-          <div class="tl-item"><div class="tl-dot"></div><h5>🏗️ Rehabilitasi &amp; Rekonstruksi</h5><p>Perbaikan rumah, sekolah, faskes. Pembangunan lebih kuat &amp; mitigasi berbasis komunitas.</p></div>
+          <div class="tl-item done"><div class="tl-dot"></div><h5>📌 Pra-Bencana</h5><p>Pemetaan risiko, pelatihan komunitas, simulasi evakuasi, pembuatan jalur & posko siaga.</p></div>
+          <div class="tl-item warn"><div class="tl-dot"></div><h5>🚨 Tanggap Darurat</h5><p>Pencarian & penyelamatan (SAR), evakuasi massal, dapur umum, posko kesehatan lapangan.</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><h5>🔄 Pemulihan Awal</h5><p>Perbaikan darurat infrastruktur, distribusi logistik, pendataan korban & kerusakan.</p></div>
+          <div class="tl-item"><div class="tl-dot"></div><h5>🏗️ Rehabilitasi & Rekonstruksi</h5><p>Perbaikan rumah, sekolah, faskes. Pembangunan lebih kuat & mitigasi berbasis komunitas.</p></div>
         </div>
       </div>
     </div>
@@ -842,17 +844,16 @@ audio{width:100%;height:34px}
       <div class="card-header" style="border-color:rgba(45,198,83,.3)"><div class="card-header-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-scale-balanced"></i></div><div><h2>Hak Anda Sebagai Warga</h2><p>Yang wajib Anda ketahui</p></div></div>
       <div class="card-body">
         <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-hospital"></i></div><h4>Hak Layanan Kesehatan Gratis</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>BPJS PBI</strong> – dibayar pemerintah untuk warga kurang mampu</li><li><strong>Jamkesda</strong> – jaminan kesehatan daerah Provinsi Banten</li><li>Puskesmas wajib melayani tanpa kartu di kondisi darurat</li><li>IGD RS wajib tangani pasien gawat darurat dulu</li></ul></div></div>
-        <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-boxes-stacked"></i></div><h4>Hak Bantuan Bencana</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Hak atas tempat pengungsian yang layak &amp; aman</li><li>Hak mendapat makanan bergizi, air bersih &amp; sanitasi</li><li>Hak atas pendampingan psikologis</li><li>Hak anak atas perlindungan khusus dalam darurat</li></ul></div></div>
+        <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-boxes-stacked"></i></div><h4>Hak Bantuan Bencana</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Hak atas tempat pengungsian yang layak & aman</li><li>Hak mendapat makanan bergizi, air bersih & sanitasi</li><li>Hak atas pendampingan psikologis</li><li>Hak anak atas perlindungan khusus dalam darurat</li></ul></div></div>
         <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-phone-flip"></i></div><h4>Nomor Penting</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🚑 <strong>Ambulan:</strong> 118 / 119</li><li>🔥 <strong>Damkar:</strong> 113</li><li>👮 <strong>Polisi:</strong> 110</li><li>🏥 <strong>BPBD Banten:</strong> (0254) 267027</li><li>📞 <strong>Relawan FBn:</strong> 0817-0050-090</li></ul></div></div>
       </div>
     </div>
   </div>
-</div><!-- /informasiPage -->
-
-<!-- ══════════════ PAGE: PROFIL ══════════════ -->
-<div id="profilPage" class="page">
+</div><div id="profilPage" class="page">
   <div class="profil-hero">
-    <div class="profil-logo"><i class="fas fa-map-marked-alt"></i></div>
+    <div class="profil-logo">
+      <img src="https://placehold.co/100x100/0B3D91/FFFFFF?text=FBn" alt="Logo FBn">
+    </div>
     <h2>Fesbukbantennews (FBn)</h2>
     <p>Jaringan Relawan Siaga Bencana Provinsi Banten</p>
   </div>
@@ -872,12 +873,7 @@ audio{width:100%;height:34px}
     <p style="font-size:.68rem;color:var(--ink-soft)">© 2026 Fesbukbantennews · Siaga Bencana Banten</p>
     <p style="font-size:.65rem;color:var(--ink-soft);margin-top:3px">Dikembangkan dengan ❤️ untuk masyarakat Banten</p>
   </div>
-</div><!-- /profilPage -->
-
-</main><!-- /main -->
-
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
+</div></main><nav class="bottom-nav">
   <button class="nav-item active" data-tab="home"><i class="fas fa-home"></i><span>Beranda</span></button>
   <button class="nav-item" data-tab="layanan"><i class="fas fa-hands-holding-circle"></i><span>Partisipasi</span></button>
   <div class="nav-panic-wrap">
