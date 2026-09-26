@@ -514,7 +514,7 @@ audio{width:100%;height:34px}
     <div id="heroVerifiedBadge" class="hero-verified-badge">
       <i class="fas fa-circle-check"></i> <span id="heroVerifiedName">Terverifikasi</span>
     </div>
-    <div class="hero-sub" id="heroSub">Tekan tombol darurat untuk mengirim laporan ke relawan BANDUL terdekat.</div>
+    <div class="hero-sub" id="heroSub">Tekan tombol darurat untuk mengirim laporan ke relawan FBn terdekat.</div>
     <div class="panic-ring-wrap">
       <div class="panic-ring"></div><div class="panic-ring"></div><div class="panic-ring"></div>
       <button class="btn-panic" onclick="onPanicTap()">
@@ -728,7 +728,7 @@ audio{width:100%;height:34px}
         </div>
         <div class="btn-pair" style="margin-top:6px">
           <button class="btn btn-outline btn-sm" onclick="goToStep(2)"><i class="fas fa-chevron-left"></i></button>
-          <button class="btn btn-wa" onclick="confirmKirim()"><i class="fab fa-whatsapp"></i> Kirim ke Relawan BANDUL</button>
+          <button class="btn btn-wa" onclick="confirmKirim()"><i class="fab fa-whatsapp"></i> Kirim ke Relawan FBn</button>
         </div>
         <p style="font-size:.68rem;color:var(--ink-soft);text-align:center;margin-top:8px">
           <i class="fas fa-lock"></i> Laporan terenkripsi · disertai nomor HP terverifikasi Anda
@@ -789,7 +789,7 @@ audio{width:100%;height:34px}
           <div class="bi-text"><strong>Alat Kesehatan (Alkes)</strong><span>Didin (Cetoy) · 0838-7002-5067</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Donor Darah','Saya memerlukan pendonor darah untuk pasien. Mohon koordinasi PMI atau relawan BANDUL.','6281906100888')">
+        <div class="bantuan-item" onclick="requestLayanan('Donor Darah','Saya memerlukan pendonor darah untuk pasien. Mohon koordinasi PMI atau relawan FBn.','6281906100888')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-droplet"></i></div>
           <div class="bi-text"><strong>Donor Darah</strong><span>Widianingsih (Wiwit) · 0819-0610-0888</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
@@ -819,9 +819,9 @@ audio{width:100%;height:34px}
           <div class="bi-text"><strong>Evakuasi Difabel & Lansia</strong><span>Tb Fauzan · 0859-4636-8540</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Aksi Kebencanaan','Saya ingin berkoordinasi terkait aksi kebencanaan bersama relawan BANDUL di lokasi.','628170050090')">
+        <div class="bantuan-item" onclick="requestLayanan('Aksi Kebencanaan','Saya ingin berkoordinasi terkait aksi kebencanaan bersama relawan FBn di lokasi.','628170050090')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-people-group"></i></div>
-          <div class="bi-text"><strong>Gubernur Rumah Singgah</strong><span>Lulu Djamaluddin · 0817-0050-090</span></div>
+          <div class="bi-text"><strong>Aksi Kebencanaan</strong><span>Ramed Soepana · 0821-2046-1959</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" onclick="requestLayanan('Perlindungan Hukum','Saya memerlukan pendampingan/perlindungan hukum terkait situasi bencana atau musibah.','6281380567813')">
@@ -864,7 +864,7 @@ audio{width:100%;height:34px}
         <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Pelatihan P3K & evakuasi dasar</div>
         <div class="pd-row"><i class="fas fa-check-circle" style="color:var(--green)"></i> Terhubung dengan jaringan BANDUL</div>
       </div>
-      <button class="btn btn-blue" onclick="partisipasiWA('Relawan','Saya ingin mendaftar sebagai relawan BANDUL Banten dan bersedia membantu di lapangan.')">
+      <button class="btn btn-blue" onclick="partisipasiWA('Relawan','Saya ingin mendaftar sebagai relawan FBn Banten dan bersedia membantu di lapangan.')">
         <i class="fas fa-hand-holding-heart"></i> Daftar Jadi Relawan
       </button>
     </div>
@@ -911,9 +911,9 @@ audio{width:100%;height:34px}
     </div>
     <div class="card-body">
       <div class="bantuan-list">
-        <div class="bantuan-item" onclick="partisipasiWA('Donasi Dana','Saya ingin berdonasi uang untuk operasional relawan BANDUL dan bantuan korban bencana.')">
+        <div class="bantuan-item" onclick="partisipasiWA('Donasi Dana','Saya ingin berdonasi uang untuk operasional relawan FBn dan bantuan korban bencana.')">
           <div class="bi-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-money-bill-wave"></i></div>
-          <div class="bi-text"><strong>Donasi Dana</strong><span>Dukung operasional relawan BANDUL</span></div>
+          <div class="bi-text"><strong>Donasi Dana</strong><span>Dukung operasional relawan FBn</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
         <div class="bantuan-item" onclick="partisipasiWA('Sumbang Pakaian','Saya ingin menyumbangkan pakaian layak pakai atau selimut untuk pengungsi bencana.')">
@@ -952,10 +952,10 @@ audio{width:100%;height:34px}
   <div class="card" style="margin-top:16px">
     <div class="card-header">
       <div class="card-header-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-user-plus"></i></div>
-      <div><h2>Daftar Jadi Relawan BANDUL</h2><p>Bergabunglah, bantu sesama warga Banten</p></div>
+      <div><h2>Daftar Jadi Relawan FBn</h2><p>Bergabunglah, bantu sesama warga Banten</p></div>
     </div>
     <div class="card-body">
-      <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">BANDUL membutuhkan relawan aktif di seluruh kabupaten/kota Banten. Tidak perlu keahlian khusus.</p>
+      <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">FBn membutuhkan relawan aktif di seluruh kabupaten/kota Banten. Tidak perlu keahlian khusus.</p>
       <a href="https://wa.me/628170050090?text=Halo+Gubernur+Rumah+Singgah,+saya+ingin+mendaftar+menjadi+relawan+Banten+Peduli" target="_blank" class="btn btn-green">
         <i class="fas fa-hand-holding-heart"></i> Daftar Jadi Relawan
       </a>
@@ -971,9 +971,9 @@ audio{width:100%;height:34px}
 
   <div class="info-panel active" id="infoKeselamatan">
     <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-house-crack"></i></div><h4>Gempa Bumi</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>Drop</strong> – berlutut, lindungi kepala & leher</li><li><strong>Cover</strong> – berlindung di bawah meja kokoh</li><li><strong>Hold On</strong> – pegang erat hingga guncangan berhenti</li><li>Jauhi jendela kaca dan dinding retak</li><li>Setelah aman, evakuasi ke lapangan terbuka</li></ul></div></div>
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-water"></i></div><h4>Banjir Bandang</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Segera naik ke tempat lebih tinggi</li><li>Hindari berjalan melewati genangan</li><li>Matikan listrik dari panel utama bila aman</li><li>Bawa dokumen penting ke tempat aman</li><li>Hubungi relawan BANDUL untuk evakuasi</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-water"></i></div><h4>Banjir Bandang</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Segera naik ke tempat lebih tinggi</li><li>Hindari berjalan melewati genangan</li><li>Matikan listrik dari panel utama bila aman</li><li>Bawa dokumen penting ke tempat aman</li><li>Hubungi relawan FBn untuk evakuasi</li></ul></div></div>
     <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:#E0F7FA;color:#00838F"><i class="fas fa-wave-square"></i></div><h4>Tsunami</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Gempa kuat di tepi pantai → segera lari ke dataran tinggi</li><li>Waspadai air laut yang tiba-tiba surut drastis</li><li>Jangan tunggu perintah — evakuasi mandiri sekarang</li><li>Ikuti jalur evakuasi (rambu biru)</li></ul></div></div>
-    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-fire"></i></div><h4>Kebakaran</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Tutup mulut & hidung dengan kain basah</li><li>Merangkak rendah — udara lebih bersih di bawah</li><li>Periksa gagang pintu sebelum membuka</li><li>Hubungi Damkar: <strong>113</strong> atau Relawan BANDUL</li></ul></div></div>
+    <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-fire"></i></div><h4>Kebakaran</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Tutup mulut & hidung dengan kain basah</li><li>Merangkak rendah — udara lebih bersih di bawah</li><li>Periksa gagang pintu sebelum membuka</li><li>Hubungi Damkar: <strong>113</strong> atau Relawan FBn</li></ul></div></div>
     <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-heart-pulse"></i></div><h4>Pertolongan Pertama Dasar</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>Pingsan:</strong> baringkan, angkat kaki, jaga napas</li><li><strong>Luka parah:</strong> tekan dengan kain bersih</li><li><strong>Patah tulang:</strong> jangan pindahkan paksa, imobilisasi</li><li>Ambulan: <strong>118 / 119</strong></li></ul></div></div>
   </div>
 
@@ -1082,14 +1082,14 @@ const OTP_EXPIRE   = 300;
 const RESEND_DELAY = 60;  
 
 const RELAWAN_DATA = [
-  {wilayah:'Kota Serang',    nama:'Koordinator BANDUL Serang',   role:'Posko Utama',     wa:'6285712345678'},
+  {wilayah:'Kota Serang',    nama:'Koordinator FBn Serang',   role:'Posko Utama',     wa:'6285712345678'},
   {wilayah:'Kab. Serang',    nama:'Koordinator Kab. Serang',     role:'Tanggap Bencana', wa:'6285712345679'},
-  {wilayah:'Kota Cilegon',   nama:'Relawan BANDUL Cilegon',      role:'SAR & Evakuasi',  wa:'6285712345680'},
-  {wilayah:'Kab. Pandeglang',nama:'BANDUL Pandeglang Siaga',     role:'Medis Lapangan',  wa:'6285712345681'},
-  {wilayah:'Kab. Lebak',     nama:'BANDUL Lebak Tanggap',        role:'Logistik & P3K',  wa:'6285712345682'},
-  {wilayah:'Kab. Tangerang', nama:'BANDUL Kab. Tangerang',       role:'Koordinasi Cepat',wa:'6285712345683'},
-  {wilayah:'Kota Tangerang', nama:'BANDUL Kota Tangerang',       role:'Evakuasi & SAR',  wa:'6285712345684'},
-  {wilayah:'Tangsel',        nama:'BANDUL Tangsel Peduli',       role:'Bantuan Sosial',  wa:'6285712345685'}
+  {wilayah:'Kota Cilegon',   nama:'Relawan FBn Cilegon',      role:'SAR & Evakuasi',  wa:'6285712345680'},
+  {wilayah:'Kab. Pandeglang',nama:'FBn Pandeglang Siaga',     role:'Medis Lapangan',  wa:'6285712345681'},
+  {wilayah:'Kab. Lebak',     nama:'FBn Lebak Tanggap',        role:'Logistik & P3K',  wa:'6285712345682'},
+  {wilayah:'Kab. Tangerang', nama:'FBn Kab. Tangerang',       role:'Koordinasi Cepat',wa:'6285712345683'},
+  {wilayah:'Kota Tangerang', nama:'FBn Kota Tangerang',       role:'Evakuasi & SAR',  wa:'6285712345684'},
+  {wilayah:'Tangsel',        nama:'FBn Tangsel Peduli',       role:'Bantuan Sosial',  wa:'6285712345685'}
 ];
 
 const CITY_COORDS = [
@@ -1574,7 +1574,7 @@ function initMapAndLocation() {
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {subdomains:'abcd'}).addTo(mapInstance);
     CITY_COORDS.forEach(c => {
       L.circleMarker([c.lat,c.lng], {radius:7,color:'#0B3D91',fillColor:'#1557C0',fillOpacity:.7,weight:2})
-        .addTo(mapInstance).bindPopup('<b>'+c.name+'</b><br>Relawan BANDUL siaga');
+        .addTo(mapInstance).bindPopup('<b>'+c.name+'</b><br>Relawan FBn siaga');
     });
     mapInstance.fitBounds(L.latLngBounds(CITY_COORDS.map(c=>[c.lat,c.lng])).pad(.15));
   } else {
@@ -1746,7 +1746,7 @@ RELAWAN_DATA.forEach(r => {
 });
 container.querySelectorAll('.btn-relawan-wa').forEach(b => {
   b.addEventListener('click', () => {
-    const msg = 'Halo relawan BANDUL ' + b.dataset.kota + ', saya memerlukan informasi atau bantuan bencana. Terima kasih.';
+    const msg = 'Halo relawan FBn ' + b.dataset.kota + ', saya memerlukan informasi atau bantuan bencana. Terima kasih.';
     window.open('https://wa.me/' + b.dataset.wa + '?text=' + encodeURIComponent(msg), '_blank');
   });
 });
