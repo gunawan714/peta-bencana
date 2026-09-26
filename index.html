@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="https://fesbukbantennews.com/wp-content/uploads/2025/07/cropped-logo-fbn-2.png">
 <link rel="icon" type="image/png" href="https://fesbukbantennews.com/wp-content/uploads/2025/07/cropped-logo-fbn-2.png">
 
-<title>BANDUL (Banten Peduli)</title>
+<title>BANDUL (Banten Peduli) – Siaga Bencana Banten</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -286,6 +286,11 @@ audio{width:100%;height:34px}
 .pd-row{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:500;color:var(--ink-mid)}
 .pd-row i{font-size:.85rem;flex-shrink:0}
 
+.kontak-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border);font-size:.84rem;color:var(--ink-mid)}
+.kontak-item:last-child{border-bottom:none}
+.kontak-item i{width:22px;text-align:center;font-size:1rem;color:var(--blue)}
+.kontak-item strong{color:var(--ink);font-weight:600}
+
 /* ═══ BOTTOM NAV & MODALS ════════════════════════════════ */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1.5px solid var(--border);display:flex;padding:6px 4px 10px;padding-bottom:max(10px,env(safe-area-inset-bottom));z-index:800;max-width:540px;margin:0 auto}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;border-radius:14px;font-size:.58rem;font-weight:600;color:var(--ink-soft);transition:.2s;font-family:'Poppins',sans-serif}
@@ -332,8 +337,8 @@ audio{width:100%;height:34px}
     <img src="https://fesbukbantennews.com/wp-content/uploads/2026/06/Logo-fbn-bulat.png" alt="Logo BANDUL">
   </div>
   <div class="header-text">
-    <h1>BANDUL (Banten Peduli)</h1>
-    <p>Fesbukbantennews · Siaga Bencana Banten</p>
+    <h1>BANDUL</h1>
+    <p>Banten Peduli · Siaga Bencana</p>
   </div>
   <div class="header-status"><div class="pulse-dot"></div>Siaga 24 Jam</div>
 </header>
@@ -373,7 +378,7 @@ audio{width:100%;height:34px}
 
   <div class="section-label"><i class="fas fa-bolt"></i> Akses Cepat</div>
   <div class="quick-row">
-    <button class="quick-btn" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan ke lokasi saya segera.')">
+    <button class="quick-btn" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan ke lokasi saya segera.','6285946368540')">
       <div class="qb-icon" style="background:#FFF0F0;color:var(--red)"><i class="fas fa-ambulance"></i></div>
       <span>Minta<br>Ambulan</span>
     </button>
@@ -388,12 +393,12 @@ audio{width:100%;height:34px}
   </div>
 
   <div class="hotline-strip">
-    <div class="hs-icon"><i class="fas fa-ambulance"></i></div>
+    <div class="hs-icon"><i class="fas fa-phone-alt"></i></div>
     <div class="hs-text">
-      <strong>Tb Fauzan</strong>
-      <span>Koordinator Rumsing & Ambulan - BANDUL Banten</span>
+      <strong>Ramed Soepana</strong>
+      <span>Koordinator Aksi Kebencanaan · Banten</span>
     </div>
-    <a href="https://wa.me/6285946368540?text=Halo+Tb+Fauzan,+saya+butuh+bantuan+bencana" target="_blank" class="btn-call btn btn-sm">
+    <a href="https://wa.me/6282120461959?text=Halo+Koordinator+BANDUL,+saya+butuh+bantuan+bencana" target="_blank" class="btn-call btn btn-sm">
       <i class="fab fa-whatsapp"></i> Hubungi
     </a>
   </div>
@@ -489,7 +494,7 @@ audio{width:100%;height:34px}
 
           <div class="otp-limit-exceeded" id="otpLimitExceeded">
             <p><i class="fas fa-triangle-exclamation"></i> Terlalu banyak percobaan. Silakan hubungi relawan langsung.</p>
-            <a href="tel:+6285946368540" class="btn btn-amber" style="display:inline-flex;width:auto;padding:10px 20px">
+            <a href="tel:+6282120461959" class="btn btn-amber" style="display:inline-flex;width:auto;padding:10px 20px">
               <i class="fas fa-phone-alt"></i> Hubungi Relawan Sekarang
             </a>
           </div>
@@ -626,54 +631,59 @@ audio{width:100%;height:34px}
     </div>
     <div class="card-body">
       <div class="bantuan-list">
-        <div class="bantuan-item" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan segera.')">
+        <div class="bantuan-item" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan segera.','6285946368540')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-ambulance"></i></div>
-          <div class="bi-text"><strong>Ambulan</strong><span>Evakuasi & rujukan rumah sakit</span></div>
+          <div class="bi-text"><strong>Ambulan</strong><span>Tb Fauzan · 0859-4636-8540</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" id="alkes" onclick="requestLayanan('Alat Kesehatan (Alkes)','Saya memerlukan alat kesehatan seperti tabung oksigen, nebulizer, kursi roda atau alkes lainnya. Mohon bantuan.')">
+        <div class="bantuan-item" id="alkes" onclick="requestLayanan('Alat Kesehatan (Alkes)','Saya memerlukan alat kesehatan seperti tabung oksigen, nebulizer, kursi roda atau alkes lainnya. Mohon bantuan.','6283870025067')">
           <div class="bi-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-stethoscope"></i></div>
-          <div class="bi-text"><strong>Alat Kesehatan (Alkes)</strong><span>Oksigen, nebulizer, kursi roda & lainnya</span></div>
+          <div class="bi-text"><strong>Alat Kesehatan (Alkes)</strong><span>Didin (Cetoy) · 0838-7002-5067</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Donor Darah','Saya memerlukan pendonor darah untuk pasien. Mohon koordinasi PMI atau relawan BANDUL.')">
+        <div class="bantuan-item" onclick="requestLayanan('Donor Darah','Saya memerlukan pendonor darah untuk pasien. Mohon koordinasi PMI atau relawan BANDUL.','6281906100888')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-droplet"></i></div>
-          <div class="bi-text"><strong>Donor Darah</strong><span>Koordinasi PMI & relawan</span></div>
+          <div class="bi-text"><strong>Donor Darah</strong><span>Widianingsih (Wiwit) · 0819-0610-0888</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" id="singgah" onclick="requestLayanan('Rumah Singgah','Saya memerlukan tempat tinggal sementara untuk keluarga/pasien miskin yang berobat jauh.')">
+        <div class="bantuan-item" id="singgah" onclick="requestLayanan('Rumah Singgah','Saya memerlukan tempat tinggal sementara untuk keluarga/pasien miskin yang berobat jauh.','6285946368540')">
           <div class="bi-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-house-chimney-medical"></i></div>
-          <div class="bi-text"><strong>Rumah Singgah</strong><span>Penginapan gratis pasien dari luar kota</span></div>
+          <div class="bi-text"><strong>Rumah Singgah</strong><span>Tb Fauzan · 0859-4636-8540</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Logistik Bencana','Saya memerlukan logistik darurat: makanan, air bersih, selimut untuk pengungsi bencana.')">
+        <div class="bantuan-item" onclick="requestLayanan('Logistik Bencana','Saya memerlukan logistik darurat: makanan, air bersih, selimut untuk pengungsi bencana.','6283870025067')">
           <div class="bi-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-box-open"></i></div>
-          <div class="bi-text"><strong>Logistik Bencana</strong><span>Makanan, air bersih, pakaian layak</span></div>
+          <div class="bi-text"><strong>Logistik Kebencanaan</strong><span>Didin (Cetoy) · 0838-7002-5067</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Trauma Healing','Saya memerlukan pendampingan psikososial/trauma healing untuk korban bencana.')">
+        <div class="bantuan-item" onclick="requestLayanan('Trauma Healing','Saya memerlukan pendampingan psikososial/trauma healing untuk korban bencana.','6282124621637')">
           <div class="bi-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-brain"></i></div>
-          <div class="bi-text"><strong>Trauma Healing</strong><span>Pendampingan psikologis korban</span></div>
+          <div class="bi-text"><strong>Trauma Healing</strong><span>Susilawati · 0821-2462-1637</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Bantu Urus BPJS','Saya memerlukan bantuan mengurus BPJS/kartu kesehatan untuk warga miskin.')">
+        <div class="bantuan-item" onclick="requestLayanan('Bantu Urus BPJS/SKTM','Saya memerlukan bantuan mengurus BPJS/SKTM/kartu kesehatan untuk warga miskin.','6287808130666')">
           <div class="bi-icon" style="background:#F0FFF4;color:#276749"><i class="fas fa-id-card-clip"></i></div>
-          <div class="bi-text"><strong>Bantu Urus BPJS</strong><span>Advokasi kartu kesehatan gratis</span></div>
+          <div class="bi-text"><strong>Administrasi Duafa (BPJS/SKTM)</strong><span>Abdul Rosyid (Ocit) · 0878-0813-0666</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Evakuasi Difabel & Lansia','Saya memerlukan bantuan evakuasi khusus untuk lansia, difabel, atau ibu hamil.')">
+        <div class="bantuan-item" onclick="requestLayanan('Evakuasi Difabel & Lansia','Saya memerlukan bantuan evakuasi khusus untuk lansia, difabel, atau ibu hamil.','6285946368540')">
           <div class="bi-icon" style="background:#FFF5F7;color:#9B2C2C"><i class="fas fa-wheelchair-move"></i></div>
-          <div class="bi-text"><strong>Evakuasi Difabel & Lansia</strong><span>Penanganan khusus kelompok rentan</span></div>
+          <div class="bi-text"><strong>Evakuasi Difabel & Lansia</strong><span>Tb Fauzan · 0859-4636-8540</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Anak','Saya melaporkan situasi darurat yang mengancam keselamatan anak. Mohon bantuan segera.')">
+        <div class="bantuan-item" onclick="requestLayanan('Aksi Kebencanaan','Saya ingin berkoordinasi terkait aksi kebencanaan bersama relawan BANDUL di lokasi.','6282120461959')">
+          <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-people-group"></i></div>
+          <div class="bi-text"><strong>Aksi Kebencanaan</strong><span>Ramed Soepana · 0821-2046-1959</span></div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
+        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Hukum','Saya memerlukan pendampingan/perlindungan hukum terkait situasi bencana atau musibah.','6281380567813')">
+          <div class="bi-icon" style="background:#F5F0FF;color:#7C3AED"><i class="fas fa-scale-balanced"></i></div>
+          <div class="bi-text"><strong>Perlindungan Hukum</strong><span>Puji Santoso · 0813-8056-7813</span></div>
+          <i class="fas fa-chevron-right bi-arrow"></i>
+        </div>
+        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Anak','Saya melaporkan situasi darurat yang mengancam keselamatan anak. Mohon bantuan segera.','6282120461959')">
           <div class="bi-icon" style="background:#F5F0FF;color:#7C3AED"><i class="fas fa-child-reaching"></i></div>
           <div class="bi-text"><strong>Perlindungan Anak</strong><span>Lapor ancaman & kekerasan pada anak</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Hukum','Saya memerlukan pendampingan hukum terkait kasus bencana atau sosial.')">
-          <div class="bi-icon" style="background:var(--purple-light);color:var(--purple)"><i class="fas fa-scale-balanced"></i></div>
-          <div class="bi-text"><strong>Perlindungan Hukum</strong><span>Pendampingan & advokasi hukum</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
       </div>
@@ -682,8 +692,8 @@ audio{width:100%;height:34px}
 
   <div style="background:var(--blue);border-radius:var(--radius-md);padding:14px 16px;text-align:center;margin-bottom:16px">
     <p style="color:rgba(255,255,255,.8);font-size:.78rem;margin-bottom:8px"><i class="fas fa-info-circle"></i> Semua permintaan diteruskan langsung ke koordinator BANDUL</p>
-    <a href="https://wa.me/6285946368540" target="_blank" class="btn btn-wa" style="display:inline-flex;width:auto;padding:10px 24px">
-      <i class="fab fa-whatsapp"></i> Hubungi Tb Fauzan (Rumsing)
+    <a href="https://wa.me/6282120461959" target="_blank" class="btn btn-wa" style="display:inline-flex;width:auto;padding:10px 24px">
+      <i class="fab fa-whatsapp"></i> Hubungi Koordinator BANDUL
     </a>
   </div>
 </div><div id="layananPage" class="page">
@@ -779,17 +789,17 @@ audio{width:100%;height:34px}
 </div><div id="relawanPage" class="page">
   <div class="gov-card">
     <div class="gov-avatar">
-      <img src="https://ui-avatars.com/api/?name=Tb+Fauzan&background=2DC653&color=fff&size=100" alt="Tb Fauzan">
+      <img src="https://ui-avatars.com/api/?name=Ramed+Soepana&background=2DC653&color=fff&size=100" alt="Ramed Soepana">
     </div>
     <div class="gov-info">
-      <strong>Tb Fauzan</strong>
-      <span>Koordinator Rumsing & Ambulan · BANDUL Banten</span>
-      <a href="https://wa.me/6285946368540?text=Halo+Tb+Fauzan,+saya+perlu+bantuan+bencana" target="_blank" class="btn-gov-call">
-        <i class="fab fa-whatsapp"></i> 0859-4636-8540
+      <strong>Ramed Soepana</strong>
+      <span>Koordinator Aksi Kebencanaan · Provinsi Banten</span>
+      <a href="https://wa.me/6282120461959?text=Halo+Koordinator+BANDUL,+saya+perlu+bantuan+bencana" target="_blank" class="btn-gov-call">
+        <i class="fab fa-whatsapp"></i> 0821-2046-1959
       </a>
     </div>
   </div>
-  <div class="section-label"><i class="fas fa-people-group"></i> Tim Layanan BANDUL</div>
+  <div class="section-label"><i class="fas fa-map-marker-alt"></i> Relawan Per Wilayah</div>
   <div class="relawan-grid" id="relawanList"></div>
   <div class="card" style="margin-top:16px">
     <div class="card-header">
@@ -798,7 +808,7 @@ audio{width:100%;height:34px}
     </div>
     <div class="card-body">
       <p style="font-size:.82rem;color:var(--ink-mid);margin-bottom:14px;line-height:1.5">BANDUL membutuhkan relawan aktif di seluruh kabupaten/kota Banten. Tidak perlu keahlian khusus.</p>
-      <a href="https://wa.me/6285946368540?text=Halo+Tb+Fauzan,+saya+ingin+mendaftar+menjadi+relawan+BANDUL+Banten" target="_blank" class="btn btn-green">
+      <a href="https://wa.me/6282120461959?text=Halo+Koordinator+BANDUL,+saya+ingin+mendaftar+menjadi+relawan+Banten+Peduli" target="_blank" class="btn btn-green">
         <i class="fas fa-hand-holding-heart"></i> Daftar Jadi Relawan
       </a>
     </div>
@@ -845,7 +855,7 @@ audio{width:100%;height:34px}
       <div class="card-body">
         <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-hospital"></i></div><h4>Hak Layanan Kesehatan Gratis</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li><strong>BPJS PBI</strong> – dibayar pemerintah untuk warga kurang mampu</li><li><strong>Jamkesda</strong> – jaminan kesehatan daerah Provinsi Banten</li><li>Puskesmas wajib melayani tanpa kartu di kondisi darurat</li><li>IGD RS wajib tangani pasien gawat darurat dulu</li></ul></div></div>
         <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-boxes-stacked"></i></div><h4>Hak Bantuan Bencana</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>Hak atas tempat pengungsian yang layak & aman</li><li>Hak mendapat makanan bergizi, air bersih & sanitasi</li><li>Hak atas pendampingan psikologis</li><li>Hak anak atas perlindungan khusus dalam darurat</li></ul></div></div>
-        <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-phone-flip"></i></div><h4>Nomor Penting</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🚑 <strong>Ambulan (Tb Fauzan):</strong> 0859-4636-8540</li><li>🔥 <strong>Damkar:</strong> 113</li><li>👮 <strong>Polisi:</strong> 110</li><li>🏥 <strong>BPBD Banten:</strong> (0254) 267027</li><li>🩺 <strong>Alkes (Didin):</strong> 0838-7002-5067</li><li>📞 <strong>Aksi Bencana (Ramed):</strong> 0821-2046-1959</li><li>🧠 <strong>Trauma Healing (Susilawati):</strong> 0821-2462-1637</li><li>⚖️ <strong>Hukum (Puji Santoso):</strong> 0813-8056-7813</li><li>🩸 <strong>Donor (Wiwit):</strong> 0819-0610-0888</li><li>📋 <strong>BPJS/SKTM (Ocit):</strong> 0878-0813-0666</li></ul></div></div>
+        <div class="info-card"><div class="info-card-head" onclick="toggleAccordion(this)"><div class="ich-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-phone-flip"></i></div><h4>Nomor Penting</h4><i class="fas fa-chevron-down ich-arrow"></i></div><div class="info-card-body"><ul><li>🚑 <strong>Ambulan:</strong> 118 / 119</li><li>🔥 <strong>Damkar:</strong> 113</li><li>👮 <strong>Polisi:</strong> 110</li><li>🏥 <strong>BPBD Banten:</strong> (0254) 267027</li><li>📞 <strong>Koordinator BANDUL:</strong> 0821-2046-1959</li></ul></div></div>
       </div>
     </div>
   </div>
@@ -865,94 +875,23 @@ audio{width:100%;height:34px}
   <div class="card">
     <div class="card-header"><div class="card-header-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-building-shield"></i></div><div><h2>Tentang BANDUL</h2></div></div>
     <div class="card-body">
-      <p style="font-size:.85rem;color:var(--ink-mid);line-height:1.7;margin-bottom:12px">BANDUL (Banten Peduli) adalah jaringan relawan warga yang tersebar di 8 kabupaten/kota Provinsi Banten, hadir untuk memberikan respon cepat terhadap bencana alam, non-alam, dan sosial, serta mendukung layanan medis dan sosial bagi masyarakat yang paling membutuhkan.</p>
-      <p style="font-size:.85rem;color:var(--ink-mid);line-height:1.7">Aplikasi ini dikembangkan agar siapapun — bahkan yang tidak mahir teknologi — dapat meminta pertolongan dengan satu ketukan, dengan verifikasi nomor HP untuk keamanan semua pihak.</p>
+      <p style="font-size:.85rem;color:var(--ink-mid);line-height:1.7;margin-bottom:12px"><strong>BANDUL (Banten Peduli)</strong> adalah jaringan relawan warga yang tersebar di 8 kabupaten/kota Provinsi Banten, hadir untuk memberikan respon cepat terhadap bencana alam, non-alam, dan sosial, serta mendukung layanan medis dan sosial bagi masyarakat yang paling membutuhkan.</p>
+      <p style="font-size:.85rem;color:var(--ink-mid);line-height:1.7">Aplikasi ini dikembangkan oleh <strong>Fesbukbantennews</strong> agar siapapun — bahkan yang tidak mahir teknologi — dapat meminta pertolongan dengan satu ketukan, dengan verifikasi nomor HP untuk keamanan semua pihak.</p>
     </div>
   </div>
-
-  <div class="section-label"><i class="fas fa-address-book"></i> Kontak Layanan BANDUL</div>
   <div class="card">
-    <div class="card-body">
-      <div class="bantuan-list">
-        <div class="bantuan-item" onclick="requestLayanan('Rumsing & Ambulan','Mohon bantuan Rumsing/Ambulan. Saya butuh evakuasi segera.')">
-          <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-ambulance"></i></div>
-          <div class="bi-text"><strong>Tb Fauzan</strong><span>Rumsing & Ambulan · 0859-4636-8540</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Alkes & Kebencanaan','Mohon bantuan peralatan Alkes / kebencanaan.')">
-          <div class="bi-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-toolbox"></i></div>
-          <div class="bi-text"><strong>Didin (Cetoy)</strong><span>Peralatan Alkes & Kebencanaan · 0838-7002-5067</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Aksi Kebencanaan','Mohon koordinasi aksi kebencanaan di lapangan.')">
-          <div class="bi-icon" style="background:var(--amber-light);color:#C45F00"><i class="fas fa-people-carry-box"></i></div>
-          <div class="bi-text"><strong>Ramed Soepana</strong><span>Aksi Kebencanaan · 0821-2046-1959</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Trauma Healing','Mohon bantuan pendampingan trauma healing untuk korban.')">
-          <div class="bi-icon" style="background:var(--purple-light);color:var(--purple)"><i class="fas fa-brain"></i></div>
-          <div class="bi-text"><strong>Susilawati</strong><span>Trauma Healing · 0821-2462-1637</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Hukum','Mohon pendampingan hukum untuk kasus saya.')">
-          <div class="bi-icon" style="background:#EEF4FF;color:#1E40AF"><i class="fas fa-scale-balanced"></i></div>
-          <div class="bi-text"><strong>Puji Santoso</strong><span>Perlindungan Hukum · 0813-8056-7813</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Informasi Donor','Saya membutuhkan informasi donor darah.')">
-          <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-droplet"></i></div>
-          <div class="bi-text"><strong>Widianingsih (Wiwit)</strong><span>Informasi Donor · 0819-0610-0888</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-        <div class="bantuan-item" onclick="requestLayanan('Administrasi Duafa','Mohon bantuan pengurusan BPJS/SKTM untuk warga duafa.')">
-          <div class="bi-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-id-card-clip"></i></div>
-          <div class="bi-text"><strong>Abdul Rosyid (Ocit)</strong><span>Administrasi Duafa (BPJS/SKTM) · 0878-0813-0666</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </div>
-      </div>
+    <div class="card-header"><div class="card-header-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-address-book"></i></div><div><h2>Kontak & Media Sosial</h2></div></div>
+    <div class="card-body" style="padding:0">
+      <a class="kontak-item" href="mailto:fesbukbantennews@gmail.com"><i class="fas fa-envelope"></i><div><strong>Email</strong><br>fesbukbantennews@gmail.com</div></a>
+      <a class="kontak-item" href="https://fesbukbantennews.com" target="_blank"><i class="fas fa-globe"></i><div><strong>Website</strong><br>fesbukbantennews.com</div></a>
+      <a class="kontak-item" href="https://instagram.com/fesbukbanten" target="_blank"><i class="fab fa-instagram"></i><div><strong>Instagram</strong><br>@fesbukbanten</div></a>
+      <a class="kontak-item" href="https://facebook.com/FesbukBanten" target="_blank"><i class="fab fa-facebook"></i><div><strong>Facebook</strong><br>Fesbuk Banten</div></a>
+      <a class="kontak-item" href="https://tiktok.com/@Fesbukbanten_" target="_blank"><i class="fab fa-tiktok"></i><div><strong>TikTok</strong><br>Fesbukbanten_</div></a>
+      <a class="kontak-item" href="https://threads.net/@fesbukbantennews" target="_blank"><i class="fab fa-threads"></i><div><strong>Threads</strong><br>fesbukbantennews</div></a>
     </div>
   </div>
-
-  <div class="section-label"><i class="fas fa-share-nodes"></i> Ikuti & Hubungi Kami</div>
-  <div class="card">
-    <div class="card-body">
-      <div class="bantuan-list">
-        <a class="bantuan-item" href="mailto:fesbukbantennews@gmail.com">
-          <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-envelope"></i></div>
-          <div class="bi-text"><strong>Email</strong><span>fesbukbantennews@gmail.com</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </a>
-        <a class="bantuan-item" href="https://fesbukbantennews.com" target="_blank" rel="noopener">
-          <div class="bi-icon" style="background:var(--blue-light);color:var(--blue)"><i class="fas fa-globe"></i></div>
-          <div class="bi-text"><strong>Website</strong><span>fesbukbantennews.com</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </a>
-        <a class="bantuan-item" href="https://instagram.com/fesbukbanten" target="_blank" rel="noopener">
-          <div class="bi-icon" style="background:#FDF2F8;color:#C13584"><i class="fab fa-instagram"></i></div>
-          <div class="bi-text"><strong>Instagram</strong><span>@fesbukbanten</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </a>
-        <a class="bantuan-item" href="https://facebook.com/FesbukBanten" target="_blank" rel="noopener">
-          <div class="bi-icon" style="background:#EEF4FF;color:#1877F2"><i class="fab fa-facebook-f"></i></div>
-          <div class="bi-text"><strong>Facebook</strong><span>Fesbuk Banten</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </a>
-        <a class="bantuan-item" href="https://tiktok.com/@fesbukbanten_" target="_blank" rel="noopener">
-          <div class="bi-icon" style="background:#F0F0F0;color:#000"><i class="fab fa-tiktok"></i></div>
-          <div class="bi-text"><strong>TikTok</strong><span>Fesbukbanten_</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </a>
-        <a class="bantuan-item" href="https://threads.net/@fesbukbantennews" target="_blank" rel="noopener">
-          <div class="bi-icon" style="background:#F0F0F0;color:#000"><i class="fab fa-threads"></i></div>
-          <div class="bi-text"><strong>Threads</strong><span>fesbukbantennews</span></div>
-          <i class="fas fa-chevron-right bi-arrow"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <div style="text-align:center;padding:10px 0 4px">
-    <p style="font-size:.68rem;color:var(--ink-soft)">© 2026 BANDUL (Banten Peduli) · Fesbukbantennews</p>
+    <p style="font-size:.68rem;color:var(--ink-soft)">© 2026 BANDUL · Banten Peduli · Fesbukbantennews</p>
     <p style="font-size:.65rem;color:var(--ink-soft);margin-top:3px">Dikembangkan dengan ❤️ untuk masyarakat Banten</p>
   </div>
 </div></main><nav class="bottom-nav">
@@ -972,20 +911,21 @@ audio{width:100%;height:34px}
 /* ════════════════════════════════════════════
    CONSTANTS
 ════════════════════════════════════════════ */
-const GUBERNUR_WA  = '6285946368540';
-const POSKO_WA     = '6285946368540'; // Nomor Admin/Posko BANDUL
+const GUBERNUR_WA  = '6282120461959';   // Koordinator Aksi Kebencanaan (Ramed Soepana)
+const POSKO_WA     = '6282120461959';   // Posko verifikasi OTP
 const MAX_LAPORAN  = 3;   
 const OTP_EXPIRE   = 300; 
 const RESEND_DELAY = 60;  
 
 const RELAWAN_DATA = [
-  {wilayah:'Rumsing / Ambulan',       nama:'Tb Fauzan',               role:'Rumsing & Ambulan',              wa:'6285946368540'},
-  {wilayah:'Alkes & Kebencanaan',     nama:'Didin (Cetoy)',           role:'Peralatan Alkes & Kebencanaan',  wa:'6283870025067'},
-  {wilayah:'Aksi Kebencanaan',        nama:'Ramed Soepana',           role:'Aksi Kebencanaan',               wa:'6282120461959'},
-  {wilayah:'Trauma Healing',          nama:'Susilawati',              role:'Trauma Healing',                 wa:'6282124621637'},
-  {wilayah:'Perlindungan Hukum',      nama:'Puji Santoso',            role:'Perlindungan Hukum',             wa:'6281380567813'},
-  {wilayah:'Informasi Donor',         nama:'Widianingsih (Wiwit)',    role:'Informasi Donor Darah',          wa:'6281906100888'},
-  {wilayah:'Administrasi Duafa',      nama:'Abdul Rosyid (Ocit)',     role:'BPJS / SKTM Duafa',              wa:'6287808130666'}
+  {wilayah:'Kota Serang',    nama:'Koordinator BANDUL Serang',   role:'Posko Utama',     wa:'6285712345678'},
+  {wilayah:'Kab. Serang',    nama:'Koordinator Kab. Serang',     role:'Tanggap Bencana', wa:'6285712345679'},
+  {wilayah:'Kota Cilegon',   nama:'Relawan BANDUL Cilegon',      role:'SAR & Evakuasi',  wa:'6285712345680'},
+  {wilayah:'Kab. Pandeglang',nama:'BANDUL Pandeglang Siaga',     role:'Medis Lapangan',  wa:'6285712345681'},
+  {wilayah:'Kab. Lebak',     nama:'BANDUL Lebak Tanggap',        role:'Logistik & P3K',  wa:'6285712345682'},
+  {wilayah:'Kab. Tangerang', nama:'BANDUL Kab. Tangerang',       role:'Koordinasi Cepat',wa:'6285712345683'},
+  {wilayah:'Kota Tangerang', nama:'BANDUL Kota Tangerang',       role:'Evakuasi & SAR',  wa:'6285712345684'},
+  {wilayah:'Tangsel',        nama:'BANDUL Tangsel Peduli',       role:'Bantuan Sosial',  wa:'6285712345685'}
 ];
 
 const CITY_COORDS = [
@@ -1049,7 +989,6 @@ function checkA2HS() {
   const isStandalone = ('standalone' in window.navigator) && (window.navigator.standalone);
   const bannerClosed = localStorage.getItem('fbn_a2hs_closed') === '1';
   
-  // Jika belum di-install (bukan standalone) dan belum ditutup manual, tampilkan banner
   if (!isStandalone && !bannerClosed && !window.matchMedia('(display-mode: standalone)').matches) {
     document.getElementById('a2hsBanner').classList.add('show');
   }
@@ -1238,10 +1177,8 @@ function sendOTP() {
   sess.phone     = '+62' + (raw.startsWith('0') ? raw.slice(1) : raw);
   sess.resetAttempts();
 
-  // Reverse Verification Logic: Kita buka WA agar user yang kirim pesan ke Posko
   openWAAuto();
 
-  // Tampilkan phase B
   document.getElementById('otpPhaseA').style.display = 'none';
   document.getElementById('otpPhaseB').style.display = 'block';
   
@@ -1250,17 +1187,14 @@ function sendOTP() {
   
   document.getElementById('otpLimitExceeded').classList.remove('show');
 
-  // Reset attempt dots
   for (let i=0;i<3;i++) { document.getElementById('ad'+i).className = 'otp-attempt-dot'; }
 
-  // Reset OTP boxes
   for (let i=0;i<6;i++) {
     const b = document.getElementById('ob'+i);
     b.value=''; b.className='otp-box';
   }
   document.getElementById('btnVerifyOTP').disabled = true;
   
-  // Kasih delay sebelum fokus otomatis, memberi waktu jika browser kembali dari aplikasi WA
   setTimeout(()=> document.getElementById('ob0').focus(), 1500);
 }
 
@@ -1288,7 +1222,6 @@ function verifyOTP() {
   const att = sess.otpAttempts;
 
   if (entered === sess.otpCode) {
-    // SUKSES
     sess.verified = true;
     for (let i=0;i<3;i++) {
       const d = document.getElementById('ad'+i);
@@ -1301,7 +1234,6 @@ function verifyOTP() {
       if (state.pendingJenis) preselectJenis(state.pendingJenis);
     }, 800);
   } else {
-    // GAGAL
     const dotIdx = Math.min(att - 1, 2);
     document.getElementById('ad'+dotIdx).classList.add('used');
     for (let i=0;i<6;i++) {
@@ -1493,7 +1425,7 @@ function kirimLaporanWA() {
   const mapsLink  = 'https://www.google.com/maps?q=' + state.lat + ',' + state.lng;
   const noHP      = sess.phone || 'Tidak diverifikasi';
   const pesan =
-`🚨 *LAPORAN BENCANA – BANDUL BANTEN* 🚨
+`🚨 *LAPORAN BENCANA – BANDUL (BANTEN PEDULI)* 🚨
 
 📌 *Jenis:* ${state.jenisBencana || 'Tidak dipilih'}
 📅 *Tanggal:* ${state.tanggal}
@@ -1503,7 +1435,7 @@ function kirimLaporanWA() {
 🎙️ *Rekaman:* ${state.audioDuration}
 📱 *No. HP Terverifikasi:* ${noHP}
 
-📞 Koordinator BANDUL (Tb Fauzan): 0859-4636-8540
+📞 Koordinator BANDUL (Ramed Soepana): 0821-2046-1959
 _Dikirim via Aplikasi BANDUL (Banten Peduli)_`;
 
   window.open('https://wa.me/' + POSKO_WA + '?text=' + encodeURIComponent(pesan), '_blank');
@@ -1536,7 +1468,7 @@ function resetFullFlow() {
 /* ════════════════════════════════════════════
    LAYANAN WA
 ════════════════════════════════════════════ */
-function requestLayanan(jenis, pesan) {
+function requestLayanan(jenis, pesan, wa = GUBERNUR_WA) {
   const lat = state.lat || '-6.1188';
   const lng = state.lng || '106.1502';
   const noHP = sess.phone ? '\n📱 *No. HP:* ' + sess.phone : '';
@@ -1547,7 +1479,7 @@ ${pesan}
 
 📍 Lokasi: https://www.google.com/maps?q=${lat},${lng}${noHP}
 📞 Mohon hubungi saya segera.`;
-  window.open('https://wa.me/' + GUBERNUR_WA + '?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
 function scrollTo2(id) {
@@ -1576,7 +1508,7 @@ RELAWAN_DATA.forEach(r => {
 });
 container.querySelectorAll('.btn-relawan-wa').forEach(b => {
   b.addEventListener('click', () => {
-    const msg = 'Halo ' + b.dataset.kota + ' BANDUL, saya memerlukan informasi atau bantuan bencana. Terima kasih.';
+    const msg = 'Halo relawan BANDUL ' + b.dataset.kota + ', saya memerlukan informasi atau bantuan bencana. Terima kasih.';
     window.open('https://wa.me/' + b.dataset.wa + '?text=' + encodeURIComponent(msg), '_blank');
   });
 });
