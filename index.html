@@ -339,7 +339,9 @@ img {max-width: 100%; display: block;}
 .bencana-opt span{font-size:.72rem;font-weight:600;color:var(--ink-mid)}
 .bencana-opt.selected span{color:var(--blue)}
 
-#mapid{height:200px;border-radius:var(--radius-md);border:2px solid var(--border);overflow:hidden;margin-bottom:12px}
+#mapid{height:200px;border-radius:var(--radius-md);border:2px solid var(--border);overflow:hidden;margin-bottom:12px;background:#E8EEF7}
+.map-fallback{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;color:var(--ink-soft);font-size:.75rem;line-height:1.5}
+.map-fallback i{font-size:1.4rem;color:var(--blue-mid)}
 .meta-box{background:var(--blue-light);border:1.5px solid rgba(11,61,145,.15);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px}
 .meta-row{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:var(--blue)}
 .meta-row+.meta-row{margin-top:6px}
@@ -545,7 +547,7 @@ audio{width:100%;height:34px}
 
   <div class="section-label"><i class="fas fa-bolt"></i> Akses Cepat</div>
   <div class="quick-row">
-    <button class="quick-btn" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan ke lokasi saya segera.','6285946368540')">
+    <button class="quick-btn" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan penanganan ke lokasi saya segera.','6285946368540')">
       <div class="qb-icon" style="background:#FFF0F0;color:var(--red)"><i class="fas fa-ambulance"></i></div>
       <span>Minta<br>Ambulan</span>
     </button>
@@ -565,7 +567,7 @@ audio{width:100%;height:34px}
       <strong>Lulu Djamaluddin</strong>
       <span>Gubernur Rumah Singgah · Banten</span>
     </div>
-    <a href="https://wa.me/628170050090?text=Halo+Gubernur+Rumah+Singgah,+saya+butuh+bantuan+bencana" target="_blank" class="btn-call btn btn-sm">
+    <a href="https://wa.me/628170050090?text=Halo+Gubernur+Rumah+Singgah,+saya+butuh+penanganan+kebencanaan" target="_blank" class="btn-call btn btn-sm">
       <i class="fab fa-whatsapp"></i> Hubungi
     </a>
   </div>
@@ -805,7 +807,7 @@ audio{width:100%;height:34px}
     </div>
     <div class="card-body">
       <div class="bantuan-list">
-        <div class="bantuan-item" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan segera.','6285946368540')">
+        <div class="bantuan-item" onclick="requestLayanan('Ambulan','Saya memerlukan ambulan untuk evakuasi pasien darurat. Mohon kirimkan bantuan penanganan segera.','6285946368540')">
           <div class="bi-icon" style="background:var(--red-light);color:var(--red)"><i class="fas fa-ambulance"></i></div>
           <div class="bi-text"><strong>Ambulan</strong><span>Tb Fauzan · 0859-4636-8540</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
@@ -855,7 +857,7 @@ audio{width:100%;height:34px}
           <div class="bi-text"><strong>Perlindungan Hukum</strong><span>Puji Santoso · 0813-8056-7813</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
         </div>
-        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Anak','Saya melaporkan situasi darurat yang mengancam keselamatan anak. Mohon bantuan segera.','6281927977810')">
+        <div class="bantuan-item" onclick="requestLayanan('Perlindungan Anak','Saya melaporkan situasi darurat yang mengancam keselamatan anak. Mohon bantuan penanganan segera.','6281927977810')">
           <div class="bi-icon" style="background:#F5F0FF;color:#7C3AED"><i class="fas fa-child-reaching"></i></div>
           <div class="bi-text"><strong>Perlindungan Anak</strong><span>Lapor ancaman & kekerasan pada anak</span></div>
           <i class="fas fa-chevron-right bi-arrow"></i>
@@ -968,7 +970,7 @@ audio{width:100%;height:34px}
     <div class="gov-info">
       <strong>Lulu Djamaluddin</strong>
       <span>Gubernur Rumah Singgah · Provinsi Banten</span>
-      <a href="https://wa.me/628170050090?text=Halo+Gubernur+Rumah+Singgah,+saya+perlu+bantuan+bencana" target="_blank" class="btn-gov-call">
+      <a href="https://wa.me/628170050090?text=Halo+Gubernur+Rumah+Singgah,+saya+perlu+penanganan+kebencanaan" target="_blank" class="btn-gov-call">
         <i class="fab fa-whatsapp"></i> 0817-0050-090
       </a>
     </div>
@@ -1670,51 +1672,196 @@ function updateHeroBadge(email) {
 
 /* ════════════════════════════════════════════
    MAP & GPS
+   ── Menggunakan tile OpenStreetMap (TANPA API KEY) ──
+   ── Tidak memakai layanan peta yang butuh API key ──
+   ── Ada fallback provider otomatis bila tile gagal ──
 ════════════════════════════════════════════ */
-function initMapAndLocation() {
-  const now = new Date();
-  state.tanggal = now.toLocaleDateString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-  state.jam = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}) + ' WIB';
-  document.getElementById('lblTanggal').textContent = state.tanggal;
-  document.getElementById('lblJam').textContent = 'Pukul ' + state.jam;
+let tileLayerInstance = null;
+let tileProviderIdx   = 0;
+let tileErrorCount    = 0;
 
-  if (!mapInstance) {
-    mapInstance = L.map('mapid', {zoomControl:false, attributionControl:false}).setView([-6.3, 106.2], 9);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {subdomains:'abcd'}).addTo(mapInstance);
-    CITY_COORDS.forEach(c => {
-      L.circleMarker([c.lat,c.lng], {radius:7,color:'#0B3D91',fillColor:'#1557C0',fillOpacity:.7,weight:2})
-        .addTo(mapInstance).bindPopup('<b>'+c.name+'</b><br>Relawan FBn siaga');
-    });
-    mapInstance.fitBounds(L.latLngBounds(CITY_COORDS.map(c=>[c.lat,c.lng])).pad(.15));
-  } else {
-    setTimeout(() => mapInstance.invalidateSize(), 200);
-  }
+/* Daftar provider tile GRATIS tanpa API key */
+const TILE_PROVIDERS = [
+  { url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',       subdomains: 'abc', maxZoom: 19 },
+  { url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',   subdomains: 'abc', maxZoom: 19 },
+  { url: 'https://tile.openstreetmap.de/{z}/{x}/{y}.png',           subdomains: 'abc', maxZoom: 19 }
+];
 
-  document.getElementById('lblKoordinat').textContent = 'Mencari GPS...';
-  document.getElementById('step2Next').disabled = true;
+/* Tile transparan 1x1 px untuk mengganti ikon gambar rusak */
+const BLANK_TILE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-  if (!navigator.geolocation) { setDefaultLocation(); return; }
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      const {latitude:la, longitude:lo} = pos.coords;
-      state.lat = la.toFixed(6); state.lng = lo.toFixed(6);
-      document.getElementById('lblKoordinat').innerHTML = '📍 ' + state.lat + ', ' + state.lng;
-      if (userMarker) mapInstance.removeLayer(userMarker);
-      userMarker = L.circleMarker([la,lo], {radius:10,color:'#D62828',fillColor:'#D62828',fillOpacity:.85,weight:3})
-        .addTo(mapInstance).bindPopup('<b>📍 Lokasi Anda</b>').openPopup();
-      mapInstance.flyTo([la,lo], 13, {duration:1.2});
-      document.getElementById('step2Next').disabled = false;
-      showToast('✅ Lokasi berhasil dikunci');
-    },
-    () => setDefaultLocation(),
-    {enableHighAccuracy:true, timeout:9000}
-  );
+function buildTileLayer(idx) {
+  const p = TILE_PROVIDERS[idx] || TILE_PROVIDERS[0];
+  return L.tileLayer(p.url, {
+    subdomains: p.subdomains || 'abc',
+    maxZoom: p.maxZoom || 19,
+    minZoom: 3,
+    crossOrigin: true,
+    attribution: '',
+    attributionControl: false,
+    errorTileUrl: BLANK_TILE,
+    detectRetina: false
+  });
 }
 
-function setDefaultLocation() {
-  state.lat = '-6.1188'; state.lng = '106.1502';
-  document.getElementById('lblKoordinat').textContent = '📍 Kota Serang (default — GPS tidak tersedia)';
-  document.getElementById('step2Next').disabled = false;
+/* Pasang fallback otomatis bila tile gagal dimuat */
+function attachTileFallback(layer) {
+  layer.on('tileerror', () => {
+    tileErrorCount++;
+    if (tileErrorCount >= 3 && tileProviderIdx < TILE_PROVIDERS.length - 1) {
+      tileProviderIdx++;
+      tileErrorCount = 0;
+      try {
+        if (tileLayerInstance && mapInstance) mapInstance.removeLayer(tileLayerInstance);
+        tileLayerInstance = buildTileLayer(tileProviderIdx);
+        attachTileFallback(tileLayerInstance);
+        tileLayerInstance.addTo(mapInstance);
+      } catch (e) { /* diamkan, peta tetap tampil walau tanpa tile */ }
+    }
+  });
+}
+
+/* Inisialisasi peta Leaflet (aman, tanpa API key) */
+function initLeafletMap() {
+  const mapEl = document.getElementById('mapid');
+  if (!mapEl) return;
+
+  if (typeof L === 'undefined' || !L.map || !L.tileLayer) {
+    mapEl.innerHTML =
+      '<div class="map-fallback">' +
+      '<i class="fas fa-map-location-dot"></i>' +
+      '<strong>Peta tidak dapat dimuat</strong>' +
+      '<span>Koordinat GPS tetap dikunci dan dikirim ke relawan.</span>' +
+      '</div>';
+    return;
+  }
+
+  try {
+    if (!mapInstance) {
+      mapInstance = L.map('mapid', { zoomControl: false, attributionControl: false })
+        .setView([-6.3, 106.2], 9);
+
+      tileProviderIdx = 0;
+      tileErrorCount  = 0;
+      tileLayerInstance = buildTileLayer(tileProviderIdx);
+      attachTileFallback(tileLayerInstance);
+      tileLayerInstance.addTo(mapInstance);
+
+      CITY_COORDS.forEach(c => {
+        L.circleMarker([c.lat, c.lng], {
+          radius: 7, color: '#0B3D91', fillColor: '#1557C0', fillOpacity: .7, weight: 2
+        }).addTo(mapInstance).bindPopup('<b>' + c.name + '</b><br>Relawan FBn siaga');
+      });
+
+      mapInstance.fitBounds(
+        L.latLngBounds(CITY_COORDS.map(c => [c.lat, c.lng])).pad(.15)
+      );
+    } else {
+      setTimeout(() => { try { mapInstance.invalidateSize(); } catch(e){} }, 200);
+    }
+  } catch (e) {
+    console.warn('Peta gagal diinisialisasi:', e);
+    mapEl.innerHTML =
+      '<div class="map-fallback">' +
+      '<i class="fas fa-map-location-dot"></i>' +
+      '<strong>Peta tidak dapat dimuat</strong>' +
+      '<span>Koordinat GPS tetap dikunci dan dikirim ke relawan.</span>' +
+      '</div>';
+  }
+}
+
+/* Update / buat penanda lokasi pengguna */
+function updateUserMarker(lat, lng) {
+  if (!mapInstance || typeof L === 'undefined') return;
+  try {
+    if (userMarker) mapInstance.removeLayer(userMarker);
+    userMarker = L.circleMarker([lat, lng], {
+      radius: 10, color: '#D62828', fillColor: '#D62828', fillOpacity: .85, weight: 3
+    }).addTo(mapInstance).bindPopup('<b>📍 Lokasi Anda</b>').openPopup();
+    mapInstance.flyTo([lat, lng], 13, { duration: 1.2 });
+  } catch (e) { /* diamkan */ }
+}
+
+/* Entry point tahap lokasi */
+function initMapAndLocation() {
+  const now = new Date();
+  state.tanggal = now.toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  state.jam     = now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' }) + ' WIB';
+
+  const lblT = document.getElementById('lblTanggal');
+  const lblJ = document.getElementById('lblJam');
+  if (lblT) lblT.textContent = state.tanggal;
+  if (lblJ) lblJ.textContent = 'Pukul ' + state.jam;
+
+  initLeafletMap();
+  requestGPSLocation();
+}
+
+/* Ambil posisi GPS — tanpa API key, hanya Geolocation API bawaan browser */
+function requestGPSLocation() {
+  const lblKoord = document.getElementById('lblKoordinat');
+  const btnNext  = document.getElementById('step2Next');
+
+  if (lblKoord) lblKoord.textContent = 'Mencari GPS...';
+  if (btnNext)  btnNext.disabled = true;
+
+  if (!navigator.geolocation) {
+    setDefaultLocation('perangkat tidak mendukung GPS');
+    return;
+  }
+
+  let resolved = false;
+  const guard = setTimeout(() => {
+    if (!resolved) { resolved = true; setDefaultLocation('GPS tidak merespons'); }
+  }, 12000);
+
+  try {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        if (resolved) return;
+        resolved = true; clearTimeout(guard);
+
+        const la = pos.coords.latitude;
+        const lo = pos.coords.longitude;
+        state.lat = la.toFixed(6);
+        state.lng = lo.toFixed(6);
+
+        if (lblKoord) lblKoord.innerHTML = '📍 ' + state.lat + ', ' + state.lng;
+        updateUserMarker(la, lo);
+        if (btnNext) btnNext.disabled = false;
+        showToast('✅ Lokasi berhasil dikunci');
+      },
+      (err) => {
+        if (resolved) return;
+        resolved = true; clearTimeout(guard);
+
+        let reason = 'GPS tidak tersedia';
+        if (err && err.code === 1)      reason = 'izin lokasi ditolak';
+        else if (err && err.code === 2) reason = 'sinyal GPS tidak ditemukan';
+        else if (err && err.code === 3) reason = 'GPS timeout';
+
+        setDefaultLocation(reason);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  } catch (e) {
+    if (!resolved) { resolved = true; clearTimeout(guard); setDefaultLocation('GPS tidak dapat diakses'); }
+  }
+}
+
+/* Lokasi default bila GPS gagal (Kota Serang) */
+function setDefaultLocation(reason) {
+  state.lat = '-6.1188';
+  state.lng = '106.1502';
+
+  const lblKoord = document.getElementById('lblKoordinat');
+  const btnNext  = document.getElementById('step2Next');
+
+  if (lblKoord) {
+    lblKoord.textContent = '📍 Kota Serang (default' + (reason ? ' — ' + reason : '') + ')';
+  }
+  if (btnNext) btnNext.disabled = false;
+
   showToast('ℹ️ Menggunakan lokasi default Kota Serang');
 }
 
@@ -1855,7 +2002,7 @@ RELAWAN_DATA.forEach(r => {
 });
 container.querySelectorAll('.btn-relawan-wa').forEach(b => {
   b.addEventListener('click', () => {
-    const msg = 'Halo relawan FBn ' + b.dataset.kota + ', saya memerlukan informasi atau bantuan bencana. Terima kasih.';
+    const msg = 'Halo relawan FBn ' + b.dataset.kota + ', saya memerlukan informasi atau penanganan kebencanaan. Terima kasih.';
     window.open('https://wa.me/' + b.dataset.wa + '?text=' + encodeURIComponent(msg), '_blank');
   });
 });
