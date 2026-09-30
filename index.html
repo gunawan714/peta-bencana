@@ -119,6 +119,176 @@ img {max-width: 100%; display: block;}
   40%{transform:translateY(-8px);opacity:1}
 }
 
+/* ═══ LOGIN SCREEN ══════════════════════════════════════ */
+.login-screen{
+  position:fixed;inset:0;z-index:99998;
+  background:linear-gradient(160deg,#0B3D91 0%,#07285F 55%,#041B44 100%);
+  display:flex;align-items:center;justify-content:center;
+  padding:22px;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .5s ease, visibility .5s ease;
+  overflow-y:auto;
+}
+.login-screen.show{opacity:1;visibility:visible;pointer-events:auto;}
+.login-screen::before{
+  content:'';position:absolute;top:-120px;right:-120px;width:340px;height:340px;
+  border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none;
+}
+.login-screen::after{
+  content:'';position:absolute;bottom:-140px;left:-140px;width:360px;height:360px;
+  border-radius:50%;background:rgba(214,40,40,.10);pointer-events:none;
+}
+.login-card{
+  position:relative;z-index:1;
+  background:#fff;border-radius:28px;width:100%;max-width:400px;
+  padding:28px 24px 26px;box-shadow:0 24px 70px rgba(0,0,0,.45);
+  animation:loginPop .55s cubic-bezier(.22,1.2,.4,1) both;
+  margin:auto;
+}
+@keyframes loginPop{
+  0%{opacity:0;transform:translateY(30px) scale(.94)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+.login-logo{
+  width:64px;height:64px;border-radius:50%;background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;overflow:hidden;
+  border:3px solid var(--blue-light);
+  box-shadow:0 8px 24px rgba(11,61,145,.25);
+}
+.login-logo img{width:100%;height:100%;object-fit:cover}
+.login-title{
+  font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800;
+  color:var(--ink);text-align:center;line-height:1.2;margin-bottom:4px;
+}
+.login-subtitle{
+  font-size:.8rem;color:var(--ink-soft);text-align:center;
+  margin-bottom:22px;line-height:1.5;
+}
+.login-step{display:none}
+.login-step.active{display:block;animation:slideUp .35s ease both}
+
+.login-method-btn{
+  width:100%;display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:14px;
+  border:1.5px solid var(--border);background:#fff;
+  font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:600;
+  color:var(--ink);transition:.15s;margin-bottom:10px;
+}
+.login-method-btn:active{transform:scale(.98)}
+.login-method-btn:hover{border-color:var(--blue);background:var(--blue-light)}
+.login-method-btn .lm-icon{
+  width:32px;height:32px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  background:var(--surface);
+}
+.lm-google{background:#fff;border:1px solid #e6e6e6}
+.lm-email{background:var(--blue-light);color:var(--blue)}
+
+.login-divider{
+  display:flex;align-items:center;gap:10px;
+  font-size:.68rem;color:var(--ink-soft);margin:14px 0;
+  font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+}
+.login-divider::before,.login-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+
+.login-field-label{
+  display:block;font-size:.75rem;font-weight:600;
+  color:var(--ink-mid);margin-bottom:6px;
+}
+.login-input{
+  width:100%;padding:13px 14px;
+  border:1.5px solid var(--border);border-radius:12px;
+  font-family:'Inter',sans-serif;font-size:.9rem;
+  color:var(--ink);background:var(--surface);outline:none;
+  transition:border .2s, background .2s;
+}
+.login-input:focus{border-color:var(--blue);background:#fff}
+.login-input.valid{border-color:var(--green)}
+
+.login-note{
+  font-size:.72rem;color:var(--ink-soft);
+  line-height:1.5;margin-top:8px;
+}
+
+.login-otp-input{
+  width:100%;padding:16px;
+  border:2px solid var(--blue);border-radius:14px;
+  font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:800;
+  letter-spacing:12px;text-align:center;color:var(--ink);
+  background:var(--blue-light);outline:none;caret-color:var(--blue);
+  transition:border .2s, background .2s;
+}
+.login-otp-input::placeholder{color:var(--ink-soft);letter-spacing:12px;font-weight:600}
+.login-otp-input.error{border-color:var(--red);background:var(--red-light);animation:shake .3s ease}
+
+.login-inbox-box{
+  background:var(--green-light);
+  border:1.5px solid rgba(45,198,83,.3);
+  border-radius:14px;padding:14px;margin-bottom:14px;
+  text-align:center;
+}
+.login-inbox-box .li-icon{
+  font-size:1.6rem;color:var(--green);margin-bottom:6px;
+}
+.login-inbox-box strong{
+  display:block;font-size:.85rem;color:var(--green-dark);margin-bottom:4px;
+}
+.login-inbox-box p{font-size:.75rem;color:var(--ink-mid);line-height:1.5}
+.login-inbox-box b{color:var(--ink);word-break:break-all}
+
+.login-demo-code{
+  background:#fff;border:2px dashed var(--blue);color:var(--blue);
+  padding:8px 16px;border-radius:10px;
+  font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;
+  letter-spacing:6px;display:inline-block;margin-top:10px;
+}
+
+.login-back{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--ink-soft);font-size:.78rem;font-weight:600;
+  padding:6px 0;margin-bottom:8px;background:none;
+}
+.login-back:hover{color:var(--blue)}
+
+.login-terms{
+  font-size:.68rem;color:var(--ink-soft);
+  text-align:center;line-height:1.5;margin-top:16px;
+}
+.login-terms a{color:var(--blue);font-weight:600}
+
+.login-google-header{
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:14px;border-bottom:1.5px solid var(--border);
+  margin-bottom:8px;
+}
+.login-google-header h3{
+  font-size:.9rem;font-weight:700;color:var(--ink);
+}
+.login-google-account{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 10px;border-radius:12px;cursor:pointer;
+  transition:.15s;
+}
+.login-google-account:hover{background:var(--blue-light)}
+.login-google-account .lga-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--blue);color:#fff;display:flex;
+  align-items:center;justify-content:center;
+  font-weight:700;font-size:.95rem;flex-shrink:0;
+}
+.login-google-account .lga-info strong{
+  display:block;font-size:.85rem;color:var(--ink);font-weight:600;
+  line-height:1.2;
+}
+.login-google-account .lga-info span{
+  font-size:.72rem;color:var(--ink-soft);
+}
+
+/* Pastikan toast muncul di atas login screen */
+.toast{ z-index: 100001; }
+
 /* ═══ FLOATING INSTALL BUTTON ═══════════════════════════ */
 .float-install{
   position:fixed;
@@ -454,6 +624,137 @@ audio{width:100%;height:34px}
   <p class="splash-tagline">Siaga Bencana · Lapor Darurat · Layanan Medis</p>
   <div class="splash-loader"><span></span><span></span><span></span></div>
   <div class="splash-footer">© 2026 Fesbukbantennews</div>
+</div>
+
+<!-- ═══ LOGIN SCREEN (Email / Google) ═══════════════════ -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="https://fesbukbantennews.com/wp-content/uploads/2026/06/Logo-fbn-bulat.png" alt="BANDUL">
+    </div>
+    <h2 class="login-title">Masuk ke BANDUL</h2>
+    <p class="login-subtitle">Verifikasi identitas untuk keamanan bersama</p>
+
+    <!-- Step: Pilih Metode -->
+    <div class="login-step active" id="loginStepChoose">
+      <button class="login-method-btn" onclick="loginWithGoogle()">
+        <span class="lm-icon lm-google">
+          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+        Lanjutkan dengan Google
+      </button>
+
+      <div class="login-divider">atau</div>
+
+      <button class="login-method-btn" onclick="showEmailLogin()">
+        <span class="lm-icon lm-email"><i class="fas fa-envelope"></i></span>
+        Lanjutkan dengan Email
+      </button>
+
+      <p class="login-terms">
+        Dengan masuk, Anda menyetujui <a href="#">Syarat &amp; Ketentuan</a> serta <a href="#">Kebijakan Privasi</a> BANDUL.
+      </p>
+    </div>
+
+    <!-- Step: Masukkan Email -->
+    <div class="login-step" id="loginStepEmail">
+      <button class="login-back" onclick="showLoginStep('choose')">
+        <i class="fas fa-chevron-left"></i> Kembali
+      </button>
+
+      <label class="login-field-label" for="loginEmailInput">Alamat Email Aktif</label>
+      <input type="email" id="loginEmailInput" class="login-input" placeholder="nama@email.com" autocomplete="email" inputmode="email">
+      <p class="login-note">
+        <i class="fas fa-info-circle"></i> Pastikan email aktif. Kami akan mengirim kode OTP 6 angka ke kotak masuk (inbox) Anda.
+      </p>
+
+      <button class="btn btn-blue" id="btnSendEmailOTP" style="margin-top:16px" disabled onclick="sendEmailOTP()">
+        <i class="fas fa-paper-plane"></i> Kirim Kode OTP
+      </button>
+    </div>
+
+    <!-- Step: Cek Inbox & Masukkan Kode -->
+    <div class="login-step" id="loginStepInbox">
+      <button class="login-back" onclick="showLoginStep('email')">
+        <i class="fas fa-chevron-left"></i> Ganti Email
+      </button>
+
+      <div class="login-inbox-box">
+        <div class="li-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <strong>Kode terkirim ke email Anda</strong>
+        <p>Kami telah mengirim kode OTP ke <br><b id="loginSentEmail">-</b></p>
+        <div style="margin-top:6px;">
+          <span style="font-size:.7rem;color:var(--ink-soft);">Mode demo — kode Anda:</span>
+          <div class="login-demo-code" id="loginDemoCode">------</div>
+        </div>
+      </div>
+
+      <label class="login-field-label" for="loginOtpInput">Masukkan Kode Verifikasi (6 angka)</label>
+      <input type="tel" inputmode="numeric" maxlength="6" id="loginOtpInput" class="login-otp-input" placeholder="------" autocomplete="one-time-code">
+
+      <p class="login-note" style="text-align:center;margin-top:12px;">
+        Tidak menemukan email? Periksa folder <b>Spam</b> atau <b>Junk</b>.
+      </p>
+
+      <button class="btn btn-green" id="btnVerifyEmailOTP" style="margin-top:14px" disabled onclick="verifyEmailOTP()">
+        <i class="fas fa-check-circle"></i> Verifikasi &amp; Masuk
+      </button>
+
+      <p class="login-note" style="text-align:center;margin-top:12px;">
+        Belum menerima kode?
+        <a href="javascript:void(0)" onclick="resendEmailOTP()" style="color:var(--blue);font-weight:600;text-decoration:underline;">Kirim ulang</a>
+      </p>
+    </div>
+
+    <!-- Step: Google Picker -->
+    <div class="login-step" id="loginStepGoogle">
+      <button class="login-back" onclick="showLoginStep('choose')">
+        <i class="fas fa-chevron-left"></i> Kembali
+      </button>
+
+      <div class="login-google-header">
+        <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <h3>Pilih akun Google</h3>
+      </div>
+
+      <div class="login-google-account" onclick="completeGoogleLogin('Budi Santoso','budi.santoso@gmail.com')">
+        <div class="lga-avatar">B</div>
+        <div class="lga-info">
+          <strong>Budi Santoso</strong>
+          <span>budi.santoso@gmail.com</span>
+        </div>
+      </div>
+      <div class="login-google-account" onclick="completeGoogleLogin('Siti Nurhaliza','siti.nur@gmail.com')">
+        <div class="lga-avatar" style="background:var(--red)">S</div>
+        <div class="lga-info">
+          <strong>Siti Nurhaliza</strong>
+          <span>siti.nur@gmail.com</span>
+        </div>
+      </div>
+      <div class="login-google-account" onclick="completeGoogleLogin('','')">
+        <div class="lga-avatar" style="background:var(--ink-soft)"><i class="fas fa-user-plus"></i></div>
+        <div class="lga-info">
+          <strong>Gunakan akun lain</strong>
+          <span>Masuk dengan akun Google lainnya</span>
+        </div>
+      </div>
+
+      <p class="login-note" style="text-align:center;margin-top:12px;">
+        <i class="fas fa-shield-halved"></i> Google tidak membagikan password Anda ke BANDUL.
+      </p>
+    </div>
+
+  </div>
 </div>
 
 <div id="offlineBanner"><i class="fas fa-wifi-slash"></i>  Tidak ada koneksi — Mode Terbatas Aktif</div>
@@ -1137,6 +1438,22 @@ const sess = {
 };
 
 /* ════════════════════════════════════════════
+   LOGIN SESSION (Email / Google)
+════════════════════════════════════════════ */
+const loginSess = {
+  get loggedIn(){ return sessionStorage.getItem('bandul_logged_in') === '1'; },
+  set loggedIn(v){ sessionStorage.setItem('bandul_logged_in', v ? '1' : '0'); },
+  get email(){ return sessionStorage.getItem('bandul_login_email') || ''; },
+  set email(v){ sessionStorage.setItem('bandul_login_email', v); },
+  get name(){ return sessionStorage.getItem('bandul_login_name') || ''; },
+  set name(v){ sessionStorage.setItem('bandul_login_name', v); },
+  get method(){ return sessionStorage.getItem('bandul_login_method') || ''; },
+  set method(v){ sessionStorage.setItem('bandul_login_method', v); },
+  get otp(){ return sessionStorage.getItem('bandul_login_otp') || ''; },
+  set otp(v){ sessionStorage.setItem('bandul_login_otp', v); }
+};
+
+/* ════════════════════════════════════════════
    MAP & MEDIA
 ════════════════════════════════════════════ */
 let mapInstance  = null;
@@ -1205,6 +1522,142 @@ function hideSplash() {
   setTimeout(() => {
     if (splash.parentNode) splash.parentNode.removeChild(splash);
   }, 700);
+}
+
+/* ════════════════════════════════════════════
+   LOGIN ENGINE (Email / Google)
+════════════════════════════════════════════ */
+function isValidEmail(e){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+}
+
+function showLoginScreen(){
+  const ls = document.getElementById('loginScreen');
+  if(ls) ls.classList.add('show');
+  showLoginStep('choose');
+  resetLoginUI();
+}
+
+function hideLoginScreen(){
+  const ls = document.getElementById('loginScreen');
+  if(ls) ls.classList.remove('show');
+}
+
+function showLoginStep(step){
+  document.querySelectorAll('.login-step').forEach(s => s.classList.remove('active'));
+  const idMap = {
+    choose: 'loginStepChoose',
+    email:  'loginStepEmail',
+    inbox:  'loginStepInbox',
+    google: 'loginStepGoogle'
+  };
+  const el = document.getElementById(idMap[step]);
+  if(el) el.classList.add('active');
+}
+
+function resetLoginUI(){
+  const emailInput = document.getElementById('loginEmailInput');
+  if(emailInput){ emailInput.value=''; emailInput.classList.remove('valid'); }
+  const btnSend = document.getElementById('btnSendEmailOTP');
+  if(btnSend) btnSend.disabled = true;
+  const otpInput = document.getElementById('loginOtpInput');
+  if(otpInput){ otpInput.value=''; otpInput.classList.remove('error'); }
+  const btnVerify = document.getElementById('btnVerifyEmailOTP');
+  if(btnVerify) btnVerify.disabled = true;
+}
+
+function showEmailLogin(){
+  showLoginStep('email');
+  setTimeout(()=> {
+    const el = document.getElementById('loginEmailInput');
+    if(el) el.focus();
+  }, 200);
+}
+
+function loginWithGoogle(){
+  showLoginStep('google');
+}
+
+function completeGoogleLogin(name, email){
+  if(!name || !email){
+    // Simulasi "gunakan akun lain" — pakai kredensial default
+    loginSess.name  = 'Pengguna Google';
+    loginSess.email = 'pengguna.google@gmail.com';
+  } else {
+    loginSess.name  = name;
+    loginSess.email = email;
+  }
+  loginSess.method   = 'google';
+  loginSess.loggedIn = true;
+  finishLogin();
+}
+
+function sendEmailOTP(){
+  const email = document.getElementById('loginEmailInput').value.trim();
+  if(!isValidEmail(email)){
+    showToast('⚠️ Format email tidak valid');
+    return;
+  }
+  const otp = String(Math.floor(100000 + Math.random() * 900000));
+  loginSess.otp   = otp;
+  loginSess.email = email;
+
+  document.getElementById('loginSentEmail').textContent = email;
+  document.getElementById('loginDemoCode').textContent  = otp;
+  document.getElementById('loginOtpInput').value = '';
+  document.getElementById('btnVerifyEmailOTP').disabled = true;
+
+  showLoginStep('inbox');
+  setTimeout(()=> {
+    const el = document.getElementById('loginOtpInput');
+    if(el) el.focus();
+  }, 300);
+  showToast('📧 Kode OTP dikirim ke ' + email, 3000);
+}
+
+function resendEmailOTP(){
+  const email = loginSess.email;
+  if(!email){ showLoginStep('email'); return; }
+  const otp = String(Math.floor(100000 + Math.random() * 900000));
+  loginSess.otp = otp;
+  document.getElementById('loginDemoCode').textContent = otp;
+  document.getElementById('loginOtpInput').value = '';
+  document.getElementById('btnVerifyEmailOTP').disabled = true;
+  showToast('📧 Kode baru dikirim ulang ke ' + email, 3000);
+}
+
+function verifyEmailOTP(){
+  const entered = document.getElementById('loginOtpInput').value.trim();
+  if(entered === loginSess.otp){
+    const email = loginSess.email;
+    loginSess.name     = email.split('@')[0];
+    loginSess.method   = 'email';
+    loginSess.loggedIn = true;
+    finishLogin();
+  } else {
+    showToast('❌ Kode OTP salah. Coba lagi.');
+    const inp = document.getElementById('loginOtpInput');
+    inp.value = '';
+    inp.classList.add('error');
+    setTimeout(()=> inp.classList.remove('error'), 500);
+    document.getElementById('btnVerifyEmailOTP').disabled = true;
+  }
+}
+
+function finishLogin(){
+  updateLoggedInUI();
+  const who = loginSess.name || loginSess.email || 'Pengguna';
+  showToast('✅ Berhasil masuk sebagai ' + who, 3000);
+  setTimeout(()=> hideLoginScreen(), 600);
+}
+
+function updateLoggedInUI(){
+  // Update sub teks hero agar menyapa pengguna yang sudah login
+  const heroSub = document.getElementById('heroSub');
+  if(heroSub && loginSess.name){
+    // Tetap tampilkan pesan utama; tidak di-overwrite agar tidak menghilangkan info penting
+    // (opsional) heroSub.setAttribute('data-user', loginSess.name);
+  }
 }
 
 /* ════════════════════════════════════════════
@@ -1784,11 +2237,51 @@ window.addEventListener('offline', updateOnlineStatus);
 updateOnlineStatus();
 
 /* ════════════════════════════════════════════
+   LOGIN INPUT LISTENERS
+════════════════════════════════════════════ */
+const loginEmailInput = document.getElementById('loginEmailInput');
+if (loginEmailInput) {
+  loginEmailInput.addEventListener('input', (e) => {
+    const v = e.target.value.trim();
+    const ok = isValidEmail(v);
+    e.target.classList.toggle('valid', ok);
+    document.getElementById('btnSendEmailOTP').disabled = !ok;
+  });
+  loginEmailInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !document.getElementById('btnSendEmailOTP').disabled) {
+      sendEmailOTP();
+    }
+  });
+}
+
+const loginOtpInput = document.getElementById('loginOtpInput');
+if (loginOtpInput) {
+  loginOtpInput.addEventListener('input', (e) => {
+    const v = e.target.value.replace(/\D/g,'').slice(0,6);
+    e.target.value = v;
+    document.getElementById('btnVerifyEmailOTP').disabled = (v.length !== 6);
+  });
+  loginOtpInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !document.getElementById('btnVerifyEmailOTP').disabled) {
+      verifyEmailOTP();
+    }
+  });
+}
+
+/* ════════════════════════════════════════════
    INIT
 ════════════════════════════════════════════ */
 window.addEventListener('DOMContentLoaded', () => {
   // Splash screen: SELALU tampil 3 detik setiap aplikasi dibuka
-  setTimeout(hideSplash, 3000);
+  setTimeout(() => {
+    hideSplash();
+    // Setelah splash menghilang, tampilkan login (jika belum login di sesi ini)
+    setTimeout(() => {
+      if (!loginSess.loggedIn) {
+        showLoginScreen();
+      }
+    }, 750);
+  }, 3000);
 
   checkA2HS();
   if (sess.verified && sess.phone) {
